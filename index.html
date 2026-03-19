@@ -298,10 +298,10 @@
             <section>
                 <h2>Metodología Bug Bounty</h2>
                 <div class="timeline">
-                    <div class="timeline-item"><h4 style="color:var(--cyan)">1. Recon</h4><p>Subdomain enum, asset discovery</p></div>
-                    <div class="timeline-item"><h4 style="color:var(--green)">2. Enum</h4><p>Parameters, endpoints, API</p></div>
-                    <div class="timeline-item"><h4 style="color:var(--pink)">3. Exploit</h4><p>SQLi, XSS, SSRF, IDOR</p></div>
-                    <div class="timeline-item"><h4 style="color:var(--orange)">4. Reporte</h4><p>PoC, CVSS, remediación</p></div>
+                    <div class="timeline-item"><h4 style="color:var(--cyan)">1. Reconocimiento</h4><p>Subdomain enum, asset discovery, tech fingerprinting</p></div>
+                    <div class="timeline-item"><h4 style="color:var(--green)">2. Enumeración</h4><p>Parameters, endpoints, API analysis, Crawling</p></div>
+                    <div class="timeline-item"><h4 style="color:var(--pink)">3. Explotación</h4><p>SQLi, XSS, SSRF, IDOR, RCE (solo con autorización)</p></div>
+                    <div class="timeline-item"><h4 style="color:var(--orange)">4. Reporte</h4><p>PoC, CVSS, remediación, comunicación con programa</p></div>
                 </div>
             </section>
 
@@ -309,14 +309,15 @@
                 <h2>Herramientas Esenciales</h2>
                 <div class="columns">
                     <div class="icon-list">
-                        <li><span class="icon">🔍</span><div><strong>Recon</strong><p>subfinder, amass, httpx</p></div></li>
-                        <li><span class="icon">🕵️</span><div><strong>Enum</strong><p>ffuf, dirsearch, nuclei</p></div></li>
-                        <li><span class="icon">💉</span><div><strong>Exploit</strong><p>Burp, SQLMap, SSRFmap</p></div></li>
+                        <li><span class="icon">🔍</span><div><strong>Reconocimiento</strong><p>subfinder, amass, assetfinder, httpx</p></div></li>
+                        <li><span class="icon">🕵️</span><div><strong>Enumeración</strong><p>ffuf, dirsearch, nuclei, nmap</p></div></li>
+                        <li><span class="icon">💉</span><div><strong>Explotación</strong><p>Burp Suite, SQLMap, SSRFmap, XSSer</p></div></li>
                     </div>
                     <div class="terminal">
                         <div class="line"><span class="prompt">#</span> <span class="command">subfinder -d target.com</span></div>
                         <div class="line"><span class="output">→ subdomains.txt</span></div>
-                        <div class="line"><span class="prompt">#</span> <span class="command">nuclei -l subs.txt -t vuln/</span></div>
+                        <div class="line"><span class="prompt">#</span> <span class="command">nuclei -l subdomains.txt \</span></div>
+                        <div class="line"><span class="command" style="padding-left:1em">-t vulnerabilities/</span></div>
                         <div class="line"><span class="output">→ findings.json</span></div>
                     </div>
                 </div>
@@ -325,8 +326,8 @@
             <section>
                 <h2>Mi Experiencia en Bug Bounty</h2>
                 <div class="columns">
-                    <div class="info-box"><h4>Lo que he aprendido</h4><ul><li>La paciencia es clave</li><li>El recon es 70%</li><li>Lee el scope dos veces</li><li>Documenta TODO</li></ul></div>
-                    <div class="info-box pink"><h4>Errores a evitar</h4><ul><li>Ir directo a exploit</li><li>Reportar fuera de scope</li><li>PoC incompleto</li><li>Desanimarse con duplicates</li></ul></div>
+                    <div class="info-box"><h4>Lo que he aprendido</h4><ul><li>La paciencia es clave</li><li>El recon es 70% del trabajo</li><li>Lee el scope dos veces</li><li>Documenta TODO</li><li>No todos los bugs pagan, pero todos enseñan</li></ul></div>
+                    <div class="info-box pink"><h4>Errores comunes a evitar</h4><ul><li>Ir directo a exploit sin recon</li><li>Reportar fuera de scope</li><li>PoC incompleto</li><li>No leer el brief del programa</li><li>Desanimarse con duplicates</li></ul></div>
                 </div>
                 <p class="quote">"El mejor hack es donde no hay huella"</p>
             </section>
