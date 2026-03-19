@@ -293,20 +293,17 @@
             </section>
 
             <section>
-                <h2>Docker Labs Vulnerables</h2>
-                <div class="columns">
-                    <div class="terminal">
-                        <div class="line"><span class="comment"># DVWA</span></div>
-                        <div class="line"><span class="prompt">$</span> <span class="command">docker run -d -p 8080:80 vulnerables/web-dvwa</span></div>
-                        <div class="line" style="margin-top:0.5em"><span class="comment"># Juice Shop</span></div>
-                        <div class="line"><span class="prompt">$</span> <span class="command">docker run -d -p 3000:3000 bkimminich/juice-shop</span></div>
-                    </div>
-                    <div class="card-grid two">
-                        <div class="card"><h4>🕷️ DVWA</h4><p>SQLi, XSS, LFI</p></div>
-                        <div class="card"><h4>🥤 Juice Shop</h4><p>OWASP Top 10</p></div>
-                        <div class="card"><h4>🐱‍💻 Metasploitable</h4><p>Linux vuln</p></div>
-                        <div class="card"><h4>🔴 VulnHub</h4><p>VMs descargables</p></div>
-                    </div>
+                <h2>Laboratorios Vulnerables</h2>
+                <div class="card-grid three">
+                    <div class="card"><h4>🐳 Docker</h4><p>DVWA, Juice Shop</p><p style="font-size:0.6em;color:var(--text-muted)">docker run -d -p 8080:80</p></div>
+                    <div class="card"><h4>📦 VirtualBox</h4><p>Metasploitable, VMs</p><p style="font-size:0.6em;color:var(--text-muted)">Oracle VM VirtualBox</p></div>
+                    <div class="card"><h4>🍎 VMware Fusion</h4><p>macOS Labs</p><p style="font-size:0.6em;color:var(--text-muted)">Metasploitable, Kioptrix</p></div>
+                </div>
+                <div class="card-grid two" style="margin-top:0.8em">
+                    <div class="card"><h4>🕷️ DVWA</h4><p>SQLi, XSS, LFI</p></div>
+                    <div class="card"><h4>🥤 Juice Shop</h4><p>OWASP Top 10</p></div>
+                    <div class="card"><h4>🐱‍💻 Metasploitable</h4><p>Linux vuln</p></div>
+                    <div class="card"><h4>🔴 VulnHub</h4><p>VMs descargables</p></div>
                 </div>
             </section>
 
