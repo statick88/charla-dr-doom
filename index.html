@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Red Team Techniques - Charlas de Seguridad</title>
+    <meta name="description" content="A presentation about red team security techniques based on our chat discussion">
+    <meta name="author" content="Statick">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+    <!-- Fira Code Nerd Font for programming ligatures -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .reveal {
+            font-family: 'Fira Code', monospace;
+        }
+        .reveal pre {
+            font-family: 'Fira Code', monospace;
+        }
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background-image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-background-size="cover">
+          <h1>Red Team Techniques</h1>
+          <p>Charlas de Seguridad - Basado en nuestra conversación</p>
+          <p><small>Created by Statick / <a href="https://github.com/statick">GitHub</a></small></p>
+        </section>
+
+        <section>
+          <h2>Lecciones de nuestra charla</h2>
+          <ul>
+            <li class="fragment">"No podria" - La importancia de contraseñas fuertes</li>
+            <li class="fragment">"Utilizas mas de 8 caracteres en las credenciales" - Política de longitud mínima</li>
+            <li class="fragment">"Debes utilizar algun llavero virtual o doble autenticación" - MFA como defensa</li>
+            <li class="fragment">"Una de mis tareas fue hackear a 3 amigos" - Ejercicios prácticos éticos</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Fortalecimiento de Credenciales</h2>
+          <div class="columns">
+            <div class="column">
+              <h3>Lo que NO hacer</h3>
+              <ul>
+                <li>Contraseñas < 8 caracteres</li>
+                <li>Palabras comunes del diccionario</li>
+                <li>Información personal (nombres, fechas)</li>
+                <li>Reutilizar credenciales</li>
+              </ul>
+            </div>
+            <div class="column">
+              <h3>Lo que SÍ hacer</h3>
+              <ul>
+                <li>Mínimo 12 caracteres</li>
+                <li>Combinar mayúsculas, minúsculas, números y símbolos</li>
+                <li>Usar gestores de contraseñas (llavero virtual)</li>
+                <li>Implementar autenticación de dos factores</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Técnicas de Red Team Ético</h2>
+          <p>Basado en: "Una de mis tareas fue hackear a 3 amigos"</p>
+          <ul>
+            <li class="fragment">Reconocimiento pasivo (whois, DNS)</li>
+            <li class="fragment">Enumeración de subdominios</li>
+            <li class="fragment">Escaneo de puertos seguro</li>
+            <li class="fragment">Pruebas de fuerza bruta con límites éticos</li>
+            <li class="fragment">Reportado responsable de hallazgos</li>
+          </ul>
+          <p class="fragment">Siempre con autorización escrita y dentro del scope definido</p>
+        </section>
+
+        <section>
+          <h2>Defensas Recomendadas</h2>
+          <ol>
+            <li>Política de contraseñas robusta (>12 caracteres, complejidad)</li>
+            <li>Gestores de contraseñas empresariales (llavero virtual)</li>
+            <li>Autenticación multifactor obligatoria</li>
+            <li>Monitoreo de intentos de acceso fallidos</li>
+            <li>Capacitación regular en conciencia de seguridad</li>
+            <li>Ejercicios de red team periódicos autorizados</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Sobre la Wiki y el Conocimiento Compartido</h2>
+          <p>Como mencionaste: "Pues me gustaría que nos ayudes a darle amor a la wiki, la hemos olvidado"</p>
+          <ul>
+            <li class="fragment">Documentar técnicas de defensa aprendidas</li>
+            <li class="fragment">Crear guías de mejores prácticas</li>
+            <li class="fragment">Compartir lecciones de ejercicios de red team</li>
+            <li class="fragment">Mantener actualizado el conocimiento de seguridad</li>
+          </ul>
+          <p class="fragment">Una wiki viva es la primera línea de defensa</p>
+        </section>
+
+        <section data-background="#000000" data-background-opacity="0.8">
+          <h2 style="color: #00ff41;">Recuerda...</h2>
+          <p style="color: #ffffff; font-size: 1.5em;">
+            La mejor defensa es comprender cómo piensa un atacante<br>
+            Pero siempre actuar dentro de la ética y la ley
+          </p>
+        </section>
+
+        <section>
+          <h3>¿Preguntas?</h3>
+          <p>
+            Continuemos fortaleciendo nuestra seguridad juntos<br>
+            Recordemos: la seguridad es un proceso, no un producto
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script>
+      // More info about initialization & config:
+      // https://revealjs.com/initialization/
+      Reveal.initialize({
+        hash: true,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
