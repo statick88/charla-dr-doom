@@ -315,9 +315,8 @@
                         <li><span class="icon">💉</span><div><strong>Explotación</strong><p>Burp Suite, Caido, SQLMap, SSRFmap, XSSer</p></div></li>
                     </div>
                     <div class="terminal">
-                        <div class="line"><span class="prompt">#</span> <span class="command">subfinder -d target.com</span></div>
-                        <div class="line"><span class="output">→ subdomains.txt</span></div>
-                        <div class="line"><span class="prompt">#</span> <span class="command">nuclei -l subdomains.txt \</span></div>
+                        <div class="line"><span class="prompt">#</span> <span class="command">subfinder -d target.com -o subs.txt</span></div>
+                        <div class="line"><span class="prompt">#</span> <span class="command">nuclei -l subs.txt \</span></div>
                         <div class="line"><span class="command" style="padding-left:1em">-t vulnerabilities/</span></div>
                         <div class="line"><span class="output">→ findings.json</span></div>
                     </div>
