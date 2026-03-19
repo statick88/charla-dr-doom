@@ -1,137 +1,1138 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="utf-8">
-    <title>Red Team Techniques - Charlas de Seguridad</title>
-    <meta name="description" content="A presentation about red team security techniques based on our chat discussion">
-    <meta name="author" content="Statick">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Doom: Introducción al Bug Bounty | FLISOL</title>
+    <meta name="description" content="Charla sobre Bug Bounty y plataformas de práctica para seguridad ofensiva">
+    <meta name="author" content="Diego Medardo Saavedra García">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦹‍♂️</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Reveal.js -->
     <link rel="stylesheet" href="dist/reset.css">
     <link rel="stylesheet" href="dist/reveal.css">
-    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
-    <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-    <!-- Fira Code Nerd Font for programming ligatures -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    
     <style>
+        :root {
+            --r-background-color: #0a0a0f;
+            --r-main-font: 'Rajdhani', sans-serif;
+            --r-heading-font: 'Rajdhani', sans-serif;
+            --r-main-color: #e0e0e0;
+            --r-heading-color: #00ff41;
+            --r-link-color: #00d4ff;
+            --r-accent-color: #ff0055;
+            --r-code-font: 'Share Tech Mono', monospace;
+        }
+
         .reveal {
-            font-family: 'Fira Code', monospace;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
         }
-        .reveal pre {
-            font-family: 'Fira Code', monospace;
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #00ff41;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
         }
+
+        .reveal h1 {
+            font-size: 3.5em;
+            border: 4px solid #00ff41;
+            padding: 20px 40px;
+            display: inline-block;
+        }
+
+        .reveal h2 {
+            font-size: 2.2em;
+            border-left: 6px solid #00ff41;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .reveal p, .reveal li {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
         .reveal code {
-            font-family: 'Fira Code', monospace;
+            font-family: 'Share Tech Mono', monospace;
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .reveal pre {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff41;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .reveal pre code {
+            background: transparent;
+            padding: 0;
+            font-size: 0.9em;
+        }
+
+        .reveal ul, .reveal ol {
+            display: block;
+            text-align: left;
+            margin-left: 2em;
+        }
+
+        .reveal li {
+            margin: 15px 0;
+        }
+
+        .reveal .fragment {
+            transition: all 0.3s ease;
+        }
+
+        .reveal .fragment:hover {
+            color: #00d4ff;
+            transform: translateX(10px);
+        }
+
+        /* Cyberpunk effects */
+        .glitch {
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { text-shadow: 0 0 20px rgba(0, 255, 65, 0.5); }
+            92% { text-shadow: -2px 0 #ff0055, 2px 0 #00d4ff; }
+            94% { text-shadow: 2px 0 #ff0055, -2px 0 #00d4ff; }
+        }
+
+        /* Terminal style */
+        .terminal {
+            background: #0d0d0d;
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+        }
+
+        .terminal::before {
+            content: '● ● ●';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            color: #00ff41;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        .terminal .prompt {
+            color: #00d4ff;
+        }
+
+        .terminal .command {
+            color: #00ff41;
+        }
+
+        .terminal .output {
+            color: #888;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 255, 65, 0.3);
+        }
+
+        .card h4 {
+            font-size: 1.3em !important;
+            margin-bottom: 15px;
+            color: #00d4ff !important;
+        }
+
+        .card p, .card li {
+            font-size: 0.9em !important;
+            color: #ccc;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: #ff0055;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 5px;
+        }
+
+        .badge.green {
+            background: #00ff41;
+            color: #000;
+        }
+
+        .badge.blue {
+            background: #00d4ff;
+            color: #000;
+        }
+
+        /* Comparison table */
+        .comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison th, .comparison td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+        }
+
+        .comparison th {
+            color: #00ff41;
+            font-size: 1.1em;
+            border-bottom: 2px solid #00ff41;
+        }
+
+        .comparison tr:hover {
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #00ff41, #00d4ff);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #00ff41;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #00ff41;
+        }
+
+        /* Quote */
+        .quote {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #00d4ff;
+            border-left: 4px solid #ff0055;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 3em;
+            color: #ff0055;
+            position: absolute;
+            margin-left: -50px;
+            margin-top: -20px;
+        }
+
+        /* Columns */
+        .columns {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff41, #00d4ff);
+            border-radius: 15px;
+        }
+
+        /* Icon list */
+        .icon-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .icon-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .icon-list .icon {
+            font-size: 2em;
+            width: 60px;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7em;
+            color: #666;
+        }
+
+        /* Section numbers */
+        .section-number {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            font-size: 8em;
+            font-weight: 700;
+            color: rgba(0, 255, 65, 0.1);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border: 2px solid #ff0055;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border-color: #00ff41;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border-color: #00d4ff;
+        }
+
+        /* Logo grid */
+        .logo-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .logo-item {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 65, 0.3);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.8em;
+            text-align: center;
+        }
+
+        .logo-item:hover {
+            border-color: #00ff41;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        /* Matrix rain effect for hero */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .columns {
+                flex-direction: column;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="reveal">
-      <div class="slides">
-        <section data-background-image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-background-size="cover">
-          <h1>Red Team Techniques</h1>
-          <p>Charlas de Seguridad - Basado en nuestra conversación</p>
-          <p><small>Created by Statick / <a href="https://github.com/statick">GitHub</a></small></p>
-        </section>
+        <div class="slides">
+            
+            <!-- SLIDE 1: TÍTULO -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">01</div>
+                <h1 class="glitch">Dr. Doom</h1>
+                <h2 style="color: #ff0055; margin-top: 10px;">Bug Bounty</h2>
+                <p style="color: #888; margin-top: 40px;">
+                    <span class="badge blue">FLISOL</span>
+                    <span class="badge green">Ethical Hacking</span>
+                    <span class="badge">Bug Bounty</span>
+                </p>
+                <p style="margin-top: 60px; color: #666;">
+                    Diego Medardo Saavedra García
+                </p>
+            </section>
 
-        <section>
-          <h2>Lecciones de nuestra charla</h2>
-          <ul>
-            <li class="fragment">"No podria" - La importancia de contraseñas fuertes</li>
-            <li class="fragment">"Utilizas mas de 8 caracteres en las credenciales" - Política de longitud mínima</li>
-            <li class="fragment">"Debes utilizar algun llavero virtual o doble autenticación" - MFA como defensa</li>
-            <li class="fragment">"Una de mis tareas fue hackear a 3 amigos" - Ejercicios prácticos éticos</li>
-          </ul>
-        </section>
+            <!-- SLIDE 2: QUIÉN SOY -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">02</div>
+                <h2>¿Quién soy?</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🎓 Docente</h4>
+                        <p>ESPE, UIDE, Abacom, Codings Academy, IST Juan Montalvo</p>
+                    </div>
+                    <div class="card">
+                        <h4>💻 FullStack Dev</h4>
+                        <p>+10 años de experiencia en desarrollo de software</p>
+                    </div>
+                    <div class="card">
+                        <h4>🦹‍♂️ Bug Bounty Hunter</h4>
+                        <p>Cazando vulnerabilidades en plataformas like Intigriti, Bugcrowd</p>
+                    </div>
+                    <div class="card">
+                        <h4>🎓 Estudiante</h4>
+                        <p>Máster en Ciberseguridad Ofensiva y Defensiva - UCM</p>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-          <h2>Fortalecimiento de Credenciales</h2>
-          <div class="columns">
-            <div class="column">
-              <h3>Lo que NO hacer</h3>
-              <ul>
-                <li>Contraseñas < 8 caracteres</li>
-                <li>Palabras comunes del diccionario</li>
-                <li>Información personal (nombres, fechas)</li>
-                <li>Reutilizar credenciales</li>
-              </ul>
-            </div>
-            <div class="column">
-              <h3>Lo que SÍ hacer</h3>
-              <ul>
-                <li>Mínimo 12 caracteres</li>
-                <li>Combinar mayúsculas, minúsculas, números y símbolos</li>
-                <li>Usar gestores de contraseñas (llavero virtual)</li>
-                <li>Implementar autenticación de dos factores</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+            <!-- SLIDE 3: QUÉ ES BUG BOUNTY -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">03</div>
+                <h2>¿Qué es Bug Bounty?</h2>
+                <div class="quote">
+                    Programa que recompensa a investigadores de seguridad por encontrar y reportar vulnerabilidades en sistemas.
+                </div>
+                <div class="columns" style="margin-top: 40px;">
+                    <div class="column">
+                        <div class="highlight-box green">
+                            <h4 style="color: #00ff41;">Para las empresas</h4>
+                            <ul style="margin-left: 20px;">
+                                <li>Descubre vulnerabilidades antes que atacantes</li>
+                                <li>Más económico que pentests tradicionales</li>
+                                <li>Acceso a miles de investigadores globales</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="highlight-box blue">
+                            <h4 style="color: #00d4ff;">Para los hunters</h4>
+                            <ul style="margin-left: 20px;">
+                                <li>Gana dinero encontrando bugs</li>
+                                <li>Aprende hacking real</li>
+                                <li>Construye tu reputación</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-          <h2>Técnicas de Red Team Ético</h2>
-          <p>Basado en: "Una de mis tareas fue hackear a 3 amigos"</p>
-          <ul>
-            <li class="fragment">Reconocimiento pasivo (whois, DNS)</li>
-            <li class="fragment">Enumeración de subdominios</li>
-            <li class="fragment">Escaneo de puertos seguro</li>
-            <li class="fragment">Pruebas de fuerza bruta con límites éticos</li>
-            <li class="fragment">Reportado responsable de hallazgos</li>
-          </ul>
-          <p class="fragment">Siempre con autorización escrita y dentro del scope definido</p>
-        </section>
+            <!-- SLIDE 4: PLATAFORMAS PRINCIPALES -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">04</div>
+                <h2>Plataformas de Bug Bounty</h2>
+                <div class="logo-grid">
+                    <div class="logo-item">
+                        <div>
+                            <span style="font-size: 2em;">🔴</span><br>
+                            HackerOne
+                        </div>
+                    </div>
+                    <div class="logo-item">
+                        <div>
+                            <span style="font-size: 2em;">🟡</span><br>
+                            Bugcrowd
+                        </div>
+                    </div>
+                    <div class="logo-item">
+                        <div>
+                            <span style="font-size: 2em;">🟢</span><br>
+                            Intigriti
+                        </div>
+                    </div>
+                    <div class="logo-item">
+                        <div>
+                            <span style="font-size: 2em;">🔵</span><br>
+                            YesWeHack
+                        </div>
+                    </div>
+                </div>
+                <p style="color: #888; margin-top: 30px;">
+                    Más de <span style="color: #00ff41; font-weight: bold;">$50 millones</span> pagados en recompensas solo en 2024
+                </p>
+            </section>
 
-        <section>
-          <h2>Defensas Recomendadas</h2>
-          <ol>
-            <li>Política de contraseñas robusta (>12 caracteres, complejidad)</li>
-            <li>Gestores de contraseñas empresariales (llavero virtual)</li>
-            <li>Autenticación multifactor obligatoria</li>
-            <li>Monitoreo de intentos de acceso fallidos</li>
-            <li>Capacitación regular en conciencia de seguridad</li>
-            <li>Ejercicios de red team periódicos autorizados</li>
-          </ol>
-        </section>
+            <!-- SLIDE 5: INTIGRITI -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">05</div>
+                <h2 style="color: #00c851;">Intigriti</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="highlight-box" style="border-color: #00c851;">
+                            <h4 style="color: #00c851;">Características</h4>
+                            <ul>
+                                <li>125,000+ investigadores</li>
+                                <li>Ranged Bounties (mínimo-máximo)</li>
+                                <li>5 niveles de bounty</li>
+                                <li>API para empresas</li>
+                                <li>Programs en 180+ países</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="terminal">
+                            <p><span class="prompt">$</span> <span class="command">curl -H "Authorization: Bearer TOKEN" \</span></p>
+                            <p><span class="command">  https://api.intigriti.com/programs</span></p>
+                            <p><span class="output">→ Lista de programas activos</span></p>
+                        </div>
+                        <p style="color: #888; margin-top: 20px;">
+                            <span class="badge" style="background: #00c851;">+ Popular en Europa</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-          <h2>Sobre la Wiki y el Conocimiento Compartido</h2>
-          <p>Como mencionaste: "Pues me gustaría que nos ayudes a darle amor a la wiki, la hemos olvidado"</p>
-          <ul>
-            <li class="fragment">Documentar técnicas de defensa aprendidas</li>
-            <li class="fragment">Crear guías de mejores prácticas</li>
-            <li class="fragment">Compartir lecciones de ejercicios de red team</li>
-            <li class="fragment">Mantener actualizado el conocimiento de seguridad</li>
-          </ul>
-          <p class="fragment">Una wiki viva es la primera línea de defensa</p>
-        </section>
+            <!-- SLIDE 6: BUGCROWD -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">06</div>
+                <h2 style="color: #f7df1c;">Bugcrowd</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="highlight-box" style="border-color: #f7df1c;">
+                            <h4 style="color: #f7df1c;">Características</h4>
+                            <ul>
+                                <li>AI Triage Assistant</li>
+                                <li>AI Analytics</li>
+                                <li>Crowdcontrol</li>
+                                <li>Reward Ranges configurables</li>
+                                <li>Penetration Testing on-demand</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <h4>Tipos de Engagement</h4>
+                            <ul>
+                                <li><strong>Bug Bounty</strong> - Continuo</li>
+                                <li><strong>On-Demand</strong> - 2 semanas</li>
+                                <li><strong>Pen Test</strong> - Pentesting tradicional</li>
+                            </ul>
+                        </div>
+                        <p style="color: #888; margin-top: 20px;">
+                            <span class="badge" style="background: #f7df1c; color: #000;">AI-Powered</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-        <section data-background="#000000" data-background-opacity="0.8">
-          <h2 style="color: #00ff41;">Recuerda...</h2>
-          <p style="color: #ffffff; font-size: 1.5em;">
-            La mejor defensa es comprender cómo piensa un atacante<br>
-            Pero siempre actuar dentro de la ética y la ley
-          </p>
-        </section>
+            <!-- SLIDE 7: HACKERONE -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">07</div>
+                <h2 style="color: #fc4c02;">HackerOne</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="highlight-box" style="border-color: #fc4c02;">
+                            <h4 style="color: #fc4c02;">Características</h4>
+                            <ul>
+                                <li>Líder del mercado</li>
+                                <li>Hai - Agente AI</li>
+                                <li>Bounty Insights</li>
+                                <li>ID-verified researchers</li>
+                                <li>Integración con SDLC</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <h4>Programas destacados</h4>
+                            <ul>
+                                <li>Google VRP</li>
+                                <li>Microsoft VRP</li>
+                                <li>1Password CTF</li>
+                                <li>Uber</li>
+                                <li>Shopify</li>
+                            </ul>
+                        </div>
+                        <p style="color: #888; margin-top: 20px;">
+                            <span class="badge" style="background: #fc4c02;">#1 Platform</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-          <h3>¿Preguntas?</h3>
-          <p>
-            Continuemos fortaleciendo nuestra seguridad juntos<br>
-            Recordemos: la seguridad es un proceso, no un producto
-          </p>
-        </section>
-      </div>
+            <!-- SLIDE 8: YESWESHACK -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">08</div>
+                <h2 style="color: #e8471c;">YesWeHack</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="highlight-box" style="border-color: #e8471c;">
+                            <h4 style="color: #e8471c;">Características</h4>
+                            <ul>
+                                <li>Enfoque europeo</li>
+                                <li>Bug Bounty Programs</li>
+                                <li>VDP (Vulnerability Disclosure)</li>
+                                <li>Code Review</li>
+                                <li>Scope personalizado</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <h4>Para Empresas</h4>
+                            <ul>
+                                <li>Reward Caps configurables</li>
+                                <li>Whitepapers de seguridad</li>
+                                <li>Dashboard de analytics</li>
+                                <li>Integración SOC</li>
+                            </ul>
+                        </div>
+                        <p style="color: #888; margin-top: 20px;">
+                            <span class="badge" style="background: #e8471c;">Europa</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: COMPARATIVA -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">09</div>
+                <h2>Comparativa</h2>
+                <table class="comparison">
+                    <thead>
+                        <tr>
+                            <th>Plataforma</th>
+                            <th>Foco</th>
+                            <th>Bounty Promedio</th>
+                            <th>Difficulty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: #fc4c02;">HackerOne</strong></td>
+                            <td>Enterprise, VRP</td>
+                            <td>$5,000 - $50,000+</td>
+                            <td>⬆️⬆️⬆️⬆️⬆️</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #f7df1c;">Bugcrowd</strong></td>
+                            <td>Startups, SaaS</td>
+                            <td>$500 - $10,000</td>
+                            <td>⬆️⬆️⬆️⬆️</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #00c851;">Intigriti</strong></td>
+                            <td>Europa, Mid-market</td>
+                            <td>$1,000 - $15,000</td>
+                            <td>⬆️⬆️⬆️</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #e8471c;">YesWeHack</strong></td>
+                            <td>Francia, UE</td>
+                            <td>$500 - $5,000</td>
+                            <td>⬆️⬆️⬆️</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="color: #888; margin-top: 30px; font-size: 0.9em;">
+                    💡 <em>Empieza en plataformas más pequeñas para ganar experiencia antes de ir a los programas VIP</em>
+                </p>
+            </section>
+
+            <!-- SLIDE 10: PLATAFORMAS DE PRÁCTICA -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">10</div>
+                <h2>Plataformas de Práctica</h2>
+                <p style="color: #888; margin-bottom: 30px;">
+                    Antes de cazar bugs reales, domina estas plataformas:
+                </p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🎯 HackTheBox</h4>
+                        <p>CTFs, Labs, Machines</p>
+                        <p style="color: #00ff41; margin-top: 10px;">Dificultad: Alta</p>
+                    </div>
+                    <div class="card">
+                        <h4>🏠 TryHackMe</h4>
+                        <p>Tutoriales, Rooms, Path</p>
+                        <p style="color: #00d4ff; margin-top: 10px;">Dificultad: Media-Baja</p>
+                    </div>
+                    <div class="card">
+                        <h4>🐳 Docker Labs</h4>
+                        <p>VulnHub, DVWA, Juice Shop</p>
+                        <p style="color: #ff0055; margin-top: 10px;">Dificultad: Variable</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 11: HACKTHEBOX -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">11</div>
+                <h2>HackTheBox</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="highlight-box green">
+                            <h4 style="color: #00ff41;">Contenido</h4>
+                            <ul>
+                                <li><strong>Retired Machines</strong> - Labs para practicar</li>
+                                <li><strong>Active Machines</strong> - Desafíos actuales</li>
+                                <li><strong>CTFs</strong> - Capture The Flag</li>
+                                <li><strong>Fortress</strong> - Ataque y defensa</li>
+                                <li><strong>Pro Labs</strong> - Escenarios empresariales</li>
+                                <li><strong>Starting Points</strong> - Para principiantes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="terminal">
+                            <p><span class="prompt">$</span> <span class="command">htb</span></p>
+                            <p><span class="output">Hack The Box CLI</span></p>
+                            <p><span class="prompt">$</span> <span class="command">htb connect --machine EasyLinux</span></p>
+                            <p><span class="output">Connecting to target...</span></p>
+                            <p><span class="output">✓ Machine deployed</span></p>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 75%;"></div>
+                        </div>
+                        <p style="color: #888; font-size: 0.8em;">75% de hackers usan HTB como entrenamiento inicial</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 12: TRYHACKME -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">12</div>
+                <h2>TryHackMe</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="highlight-box blue">
+                            <h4 style="color: #00d4ff;">Learning Paths</h4>
+                            <ul>
+                                <li>Introduction to Cyber Security</li>
+                                <li>Web Fundamentals</li>
+                                <li>Network Security</li>
+                                <li>Privilege Escalation</li>
+                                <li>CTF Fundamentals</li>
+                                <li>Offensive Pentesting</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <h4>Rooms Populares</h4>
+                            <ul>
+                                <li>OWASP Top 10</li>
+                                <li>Blue Team Tools</li>
+                                <li>Linux Fundamentals</li>
+                                <li>Windows Fundamentals</li>
+                                <li>Burp Suite</li>
+                                <li>Nmap</li>
+                            </ul>
+                        </div>
+                        <p style="color: #888; margin-top: 20px;">
+                            <span class="badge blue">Beginner Friendly</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 13: DOCKER LABS -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">13</div>
+                <h2>Docker Labs Vulnerables</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="terminal">
+                            <p style="color: #888;"># DVWA - Damn Vulnerable Web App</p>
+                            <p><span class="prompt">$</span> <span class="command">docker run -d \</span></p>
+                            <p><span class="command">  -p 8080:80 \</span></p>
+                            <p><span class="command">  vulnerables/web-dvwa</span></p>
+                            <br>
+                            <p style="color: #888;"># OWASP Juice Shop</p>
+                            <p><span class="prompt">$</span> <span class="command">docker run -d \</span></p>
+                            <p><span class="command">  -p 3000:3000 \</span></p>
+                            <p><span class="command">  bkimminich/juice-shop</span></p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card-grid" style="gap: 15px;">
+                            <div class="card" style="padding: 15px;">
+                                <h4>🕷️ DVWA</h4>
+                                <p style="font-size: 0.8em;">SQLi, XSS, CSRF, LFI</p>
+                            </div>
+                            <div class="card" style="padding: 15px;">
+                                <h4>🥤 Juice Shop</h4>
+                                <p style="font-size: 0.8em;">OWASP Top 10 completo</p>
+                            </div>
+                            <div class="card" style="padding: 15px;">
+                                <h4>🐱‍💻 Metasploitable</h4>
+                                <p style="font-size: 0.8em;">Linux vulnerable</p>
+                            </div>
+                            <div class="card" style="padding: 15px;">
+                                <h4>🔴 VulnHub</h4>
+                                <p style="font-size: 0.8em;">VMs descargables</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: MI CURSO -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">14</div>
+                <h2>Mi Curso de Ethical Hacking</h2>
+                <p style="color: #888;">
+                    <a href="https://statick88.github.io" style="color: #00d4ff;">statick88.github.io</a>
+                </p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>📅 Modalidad</h4>
+                        <p>Clases en vivo 19:00 - 22:00</p>
+                        <p style="color: #00ff41;">16-27 de marzo 2026</p>
+                    </div>
+                    <div class="card">
+                        <h4>📜 Certificación</h4>
+                        <p>Aval del Ministerio del Trabajo</p>
+                        <p style="color: #00d4ff;">Certificado profesional</p>
+                    </div>
+                    <div class="card">
+                        <h4>🖥️ Simuladores</h4>
+                        <p>Core i5, 8GB RAM mínimo</p>
+                        <p style="color: #ff0055;">Hands-on labs</p>
+                    </div>
+                </div>
+                <div class="highlight-box" style="margin-top: 30px;">
+                    <p style="text-align: center; margin: 0;">
+                        <strong style="color: #00ff41;">Próximamente:</strong> ebook de FastAPI con Quarto - <span style="color: #888;">lanzamiento abierto</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- SLIDE 15: METODOLOGÍA -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">15</div>
+                <h2>Metodología Bug Bounty</h2>
+                <div class="timeline" style="margin-top: 40px;">
+                    <div class="timeline-item fragment">
+                        <h4 style="color: #00d4ff;">1. Reconocimiento</h4>
+                        <p>Subdomain enumeration, asset discovery, tech fingerprinting</p>
+                    </div>
+                    <div class="timeline-item fragment">
+                        <h4 style="color: #00ff41;">2. Enumeración</h4>
+                        <p>Parameters, endpoints, API analysis, Crawling</p>
+                    </div>
+                    <div class="timeline-item fragment">
+                        <h4 style="color: #ff0055;">3. Explotación</h4>
+                        <p>SQLi, XSS, SSRF, IDOR, RCE (con autorización)</p>
+                    </div>
+                    <div class="timeline-item fragment">
+                        <h4 style="color: #f7df1c;">4. Reporte</h4>
+                        <p>PoC, CVSS, remediación, comunicación con programa</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 16: HERRAMIENTAS -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">16</div>
+                <h2>Herramientas Esenciales</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="icon-list">
+                            <li>
+                                <span class="icon">🔍</span>
+                                <div>
+                                    <strong>Recon</strong>
+                                    <p style="font-size: 0.8em; color: #888;">subfinder, amass, assetfinder</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon">🕵️</span>
+                                <div>
+                                    <strong>Enumeration</strong>
+                                    <p style="font-size: 0.8em; color: #888;">ffuf, dirsearch, nuclei</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon">💉</span>
+                                <div>
+                                    <strong>Exploitation</strong>
+                                    <p style="font-size: 0.8em; color: #888;">Burp Suite, SQLMap, SSRFmap</p>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="terminal">
+                            <p><span class="prompt">#</span> <span class="command">subfinder -d target.com</span></p>
+                            <p><span class="output">→ subdomains.txt</span></p>
+                            <br>
+                            <p><span class="prompt">#</span> <span class="command">nuclei -l subdomains.txt \</span></p>
+                            <p><span class="command">  -t vulnerabilities/</span></p>
+                            <p><span class="output">→ findings.json</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 17: MI EXPERIENCIA -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">17</div>
+                <h2>Mi Experiencia en Bug Bounty</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="highlight-box green">
+                            <h4 style="color: #00ff41;">🎯 Lo que he aprendido</h4>
+                            <ul>
+                                <li>La paciencia es clave</li>
+                                <li>El recon es 70% del trabajo</li>
+                                <li>Lee el scope dos veces</li>
+                                <li>Documenta TODO</li>
+                                <li>No todos los bugs pagan, pero todos enseñan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="highlight-box" style="border-color: #ff0055;">
+                            <h4 style="color: #ff0055;">⚠️ Errores comunes</h4>
+                            <ul>
+                                <li>Ir directo a exploit sin recon</li>
+                                <li>Reportar fuera de scope</li>
+                                <li>PoC incompleto</li>
+                                <li>No leer el brief del programa</li>
+                                <li>Desanimarse con duplicates</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: #888; margin-top: 30px;">
+                    💡 <em>"El mejor hack es donde no hay huella"</em>
+                </p>
+            </section>
+
+            <!-- SLIDE 18: TIPS -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">18</div>
+                <h2>Tips para Empezar</h2>
+                <div class="card-grid">
+                    <div class="card fragment">
+                        <h4>📚 Estudia</h4>
+                        <p>OWASP Top 10, PortSwigger Web Academy, HTB Academy</p>
+                    </div>
+                    <div class="card fragment">
+                        <h4>🏠 Practica</h4>
+                        <p>DVWA, Juice Shop, TryHackMe, HackTheBox</p>
+                    </div>
+                    <div class="card fragment">
+                        <h4>📝 Documenta</h4>
+                        <p>Keep notes, screenshot everything, usa Obsidian</p>
+                    </div>
+                    <div class="card fragment">
+                        <h4>🤝 Comunidad</h4>
+                        <p>Twitter infosec, Discord, writeups, bounties públicas</p>
+                    </div>
+                    <div class="card fragment">
+                        <h4>⏳ Paciencia</h4>
+                        <p>Los primeros meses son difíciles, persiste</p>
+                    </div>
+                    <div class="card fragment">
+                        <h4>🎯 Especializa</h4>
+                        <p>Elige un nicho: API, mobile, IoT, etc.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 19: RECURSOS -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">19</div>
+                <h2>Recursos</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="card">
+                            <h4>📖 Learning</h4>
+                            <ul>
+                                <li><a href="https://portswigger.net/web-security" style="color: #00d4ff;">PortSwigger Academy</a></li>
+                                <li><a href="https://academy.hackthebox.com" style="color: #00d4ff;">HTB Academy</a></li>
+                                <li><a href="https://owasp.org/www-project-web-security-testing-guide/" style="color: #00d4ff;">OWASP WSTG</a></li>
+                            </ul>
+                        </div>
+                        <div class="card" style="margin-top: 20px;">
+                            <h4>🛠️ Tools</h4>
+                            <ul>
+                                <li>Burp Suite Pro</li>
+                                <li>Nuclei Templates</li>
+                                <li>Subfinder + Chaos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <h4>💰 Platforms</h4>
+                            <ul>
+                                <li><a href="https://hackerone.com" style="color: #fc4c02;">HackerOne</a></li>
+                                <li><a href="https://bugcrowd.com" style="color: #f7df1c;">Bugcrowd</a></li>
+                                <li><a href="https://intigriti.com" style="color: #00c851;">Intigriti</a></li>
+                                <li><a href="https://yeswehack.com" style="color: #e8471c;">YesWeHack</a></li>
+                            </ul>
+                        </div>
+                        <div class="card" style="margin-top: 20px;">
+                            <h4>📺 Content</h4>
+                            <ul>
+                                <li><a href="https://statick88.github.io" style="color: #00ff41;">Mi portafolio</a></li>
+                                <li>Twitter/X infosec community</li>
+                                <li>YouTube: InsiderPhD, STÖK</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 20: CIERRE -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div class="section-number">20</div>
+                <h1 class="glitch" style="color: #ff0055;">¡Gracias!</h1>
+                <div style="margin-top: 50px;">
+                    <p style="font-size: 1.5em; color: #00ff41;">Diego Medardo Saavedra García</p>
+                    <p style="color: #888;">
+                        <span class="badge blue">GitHub</span>
+                        <span class="badge green">LinkedIn</span>
+                        <span class="badge">Twitter</span>
+                    </p>
+                    <div style="margin-top: 30px;">
+                        <p style="color: #666; font-size: 0.9em;">
+                            github.com/statick88
+                        </p>
+                        <p style="color: #666; font-size: 0.9em;">
+                            statick88.github.io
+                        </p>
+                    </div>
+                </div>
+                <div class="footer">
+                    Dr. Doom: Bug Bounty | FLISOL 2026
+                </div>
+            </section>
+
+            <!-- SLIDE 21: Q&A -->
+            <section data-background-gradient="radial(circle at center, #0a0a0f 0%, #000 100%)">
+                <div style="text-align: center;">
+                    <h1 style="font-size: 4em; color: #00d4ff;">?</h1>
+                    <h2 style="color: #00ff41; margin-top: 30px;">¿Preguntas?</h2>
+                    <div class="footer">
+                        charlar-dr-doom | FLISOL 2026
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </div>
 
+    <!-- Reveal.js -->
     <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    
     <script>
-      // More info about initialization & config:
-      // https://revealjs.com/initialization/
-      Reveal.initialize({
-        hash: true,
-        // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-      });
+        Reveal.initialize({
+            hash: true,
+            hashOneBasedIndex: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            progress: true,
+            controls: true,
+            controlsTutorial: true,
+            controlsLayout: 'bottom-right',
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            pdfSeparateFragments: false,
+            pdfMaxPagesPerSlide: 1,
+            plugins: [
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealZoom,
+                RevealSearch
+            ],
+            markdown: {
+                gfm: true,
+                breaks: false,
+                smartLists: true,
+                smartypants: false
+            },
+            highlight: {
+                highlightOnLoad: true,
+                escapeHTML: true
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
