@@ -2234,7 +2234,343 @@
             </section>
 
             <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 48: GRACIAS                                                    -->
+            <!-- SLIDE 48: BONUS CHALLENGE - XSS                                      -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>🟡 BONUS <span style="color:var(--orange)">— XSS Challenge</span></h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">¿Viste el video? Ahora inyecta un script. ¡Solo para demostrar, no para dañar!</p>
+                <div class="info-box orange" style="margin-top:0.3em">
+                    <h4>🔥 Challenge: "El Ojo de Doom"</h4>
+                    <p style="font-size:0.58em">Encuentra el input vulnerable y haz que muestre una alerta. La flag aparece en el DOM.</p>
+                    <p style="font-family:var(--mono);font-size:0.85em;color:var(--orange);text-align:center;padding:0.3em">
+                        <strong>https://doom-statick.github.io/ctf-flisol/search?q=test</strong>
+                    </p>
+                    <p style="font-size:0.55em;text-align:center">Flag: <code style="color:var(--doom-gold)">FLISOL{...}</code> (oculta en el HTML)</p>
+                </div>
+                <div class="columns" style="margin-top:0.3em">
+                    <div>
+                        <div class="info-box">
+                            <h4>💡 Pista 1 (50 pts)</h4>
+                            <p style="font-size:0.58em">El parámetro <code>q</code> refleja tu input sin sanitizar. Prueba: <code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+                        </div>
+                        <div class="info-box" style="margin-top:0.2em">
+                            <h4>💡 Pista 2 (25 pts)</h4>
+                            <p style="font-size:0.58em">Si no funciona el script, inspecciona el HTML con DevTools (F12). La flag está en un atributo <code>data-flag</code>.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="terminal" style="font-size:0.5em">
+                            <div class="line"><span class="comment"># XSS Reflected - Payload básico</span></div>
+                            <div class="line"><span class="line"></span></div>
+                            <div class="line"><span class="comment"># Intento 1: Alert simple</span></div>
+                            <div class="line"><span class="prompt">URL:</span> <span class="command">?q=&lt;script&gt;alert('XSS')&lt;/script&gt;</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># Intento 2: Si filtra script tags</span></div>
+                            <div class="line"><span class="prompt">URL:</span> <span class="command">?q=&lt;img src=x onerror=alert(1)&gt;</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># Inspeccionar DOM con DevTools</span></div>
+                            <div class="line"><span class="prompt">F12:</span> <span class="command">Elements → buscar data-flag</span></div>
+                            <div class="line"><span class="output">&lt;div data-flag="FLISOL{...}"&gt;</span></div>
+                        </div>
+                        <p style="font-size:0.55em;color:var(--orange);margin-top:0.2em"><strong>Tiempo:</strong> 8 min | Solo inspeccionar, NO ejecutar en producción</p>
+                    </div>
+                </div>
+                <div class="doom-tip"><strong>[DOOM TIP]</strong> XSS en Bug Bounty es HIGH/CITICAL severity. ¡Aprende a reportarlo bien!</div>
+                <div class="doom-consejo"><strong>[Statick]</strong> Che, XSS reflejado es el más fácil de encontrar. Practiquen y vayan a por su primer bounty.</div>
+                <div class="slide-footer">
+                    <span class="footer-text">Dr. Doom: Bug Bounty | FLISOL 2026 | Statick</span>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 49: BONUS - MI PRIMER BOUNTY ROADMAP                           -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>🚀 Tu Primer Bounty <span style="color:var(--doom-gold)">— Roadmap</span></h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Oigan bacán, esto es exactamente lo que yo hice para cobrar mi primer bounty. Step by step.</p>
+                <div class="timeline" style="margin-top:0.3em">
+                    <div class="timeline-item" style="border-color:var(--cyan)">
+                        <h4 style="color:var(--cyan)">SEMANA 1-2</h4>
+                        <p style="font-size:0.52em"><strong>Fundamentos</strong></p>
+                        <ul style="font-size:0.48em">
+                            <li>DVWA completo</li>
+                            <li>Juice Shop 20+ challenges</li>
+                            <li>PortSwigger Academy</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item" style="border-color:var(--green)">
+                        <h4 style="color:var(--green)">SEMANA 3-4</h4>
+                        <p style="font-size:0.52em"><strong>Herramientas</strong></p>
+                        <ul style="font-size:0.48em">
+                            <li>Burp Suite Pro/CE</li>
+                            <li>Subfinder, Nuclei</li>
+                            <li>Primer CTF</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item" style="border-color:var(--orange)">
+                        <h4 style="color:var(--orange)">SEMANA 5-6</h4>
+                        <p style="font-size:0.52em"><strong>Programas</strong></p>
+                        <ul style="font-size:0.48em">
+                            <li>Intigriti (fácil)</li>
+                            <li>Bugcrowd VDP</li>
+                            <li>Primer scope</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item" style="border-color:var(--pink)">
+                        <h4 style="color:var(--pink)">SEMANA 7-8</h4>
+                        <p style="font-size:0.52em"><strong>Primer Bounty</strong></p>
+                        <ul style="font-size:0.48em">
+                            <li>HackerOne</li>
+                            <li>Recon + Enum</li>
+                            <li>¡Reportar! 💰</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-grid three" style="margin-top:0.3em">
+                    <div class="card" style="border-color:var(--green)">
+                        <h4 style="color:var(--green)">💰 Bounty Promedio</h4>
+                        <p style="font-size:0.55em">Low: $100-500</p>
+                        <p style="font-size:0.55em">Medium: $500-2000</p>
+                        <p style="font-size:0.55em;color:var(--pink)">High: $2000-10000</p>
+                    </div>
+                    <div class="card" style="border-color:var(--cyan)">
+                        <h4 style="color:var(--cyan)">⏱️ Tiempo Realista</h4>
+                        <p style="font-size:0.55em">Primer reporte: 4-6 semanas</p>
+                        <p style="font-size:0.55em">Primer bounty: 2-3 meses</p>
+                        <p style="font-size:0.55em;color:var(--doom-gold)">Full-time: 6+ meses</p>
+                    </div>
+                    <div class="card" style="border-color:var(--orange)">
+                        <h4 style="color:var(--orange)">🎯 Mejores Targets</h4>
+                        <p style="font-size:0.55em">Startups pequeñas</p>
+                        <p style="font-size:0.55em">Apps con auth compleja</p>
+                        <p style="font-size:0.55em;color:var(--pink)">APIs GraphQL</p>
+                    </div>
+                </div>
+                <div class="doom-tip"><strong>[DOOM TIP]</strong> Mi primer bounty fue un XSS stored por $250 en una startup. Pequeño, pero fue el primer paso.</div>
+                <div class="doom-consejo"><strong>[Statick]</strong> Che, no esperes a ser experto. El primer bounty es el más difícil. Después viene la cascada.</div>
+                <div class="slide-footer">
+                    <span class="footer-text">Dr. Doom: Bug Bounty | FLISOL 2026 | Statick</span>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 50: HISTORIAS REALES - SOCIAL PROOF                             -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>📊 Resultados Reales <span style="color:var(--green)">— No es Cuento</span></h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Datos reales de mi trayectoria. Esto es lo que se puede lograr.</p>
+                <div class="card-grid four" style="margin-top:0.3em">
+                    <div class="card" style="border-color:var(--green)">
+                        <h4 style="color:var(--green)">🏆</h4>
+                        <p style="font-size:1.2em;color:var(--green)">15/15</p>
+                        <p style="font-size:0.5em">RootedCON 2026</p>
+                        <p style="font-size:0.48em;color:var(--text-muted)">100% completion</p>
+                    </div>
+                    <div class="card" style="border-color:var(--cyan)">
+                        <h4 style="color:var(--cyan)">🎓</h4>
+                        <p style="font-size:1.2em;color:var(--cyan)">6</p>
+                        <p style="font-size:0.5em">Universidades</p>
+                        <p style="font-size:0.48em;color:var(--text-muted)">Profesor activo</p>
+                    </div>
+                    <div class="card" style="border-color:var(--orange)">
+                        <h4 style="color:var(--orange)">📝</h4>
+                        <p style="font-size:1.2em;color:var(--orange)">70+</p>
+                        <p style="font-size:0.5em">Challenges</p>
+                        <p style="font-size:0.48em;color:var(--text-muted)">Publicados</p>
+                    </div>
+                    <div class="card" style="border-color:var(--pink)">
+                        <h4 style="color:var(--pink)">💰</h4>
+                        <p style="font-size:1.2em;color:var(--pink)">$XXX</p>
+                        <p style="font-size:0.5em">Bounties</p>
+                        <p style="font-size:0.48em;color:var(--text-muted)">Intigriti + Bugcrowd</p>
+                    </div>
+                </div>
+                <div class="savitar-alert" style="margin-top:0.3em">
+                    <h4>📜 Lo que dice mi perfil</h4>
+                    <p style="font-size:0.58em">
+                        <strong>Diego Medardo Saavedra García</strong> — Software Developer FullStack con <strong>10+ años</strong> de experiencia. 
+                        Especializado en <strong>Ethical Hacking</strong> y <strong>Seguridad Ofensiva</strong>. 
+                        Actualmente estudiando <strong>Máster UCM en Ciberseguridad</strong>. 
+                        <span style="color:var(--green)">¡Más de 322+ repos en GitHub!</span>
+                    </p>
+                </div>
+                <div class="columns" style="margin-top:0.3em">
+                    <div class="info-box">
+                        <h4>📊 Mi Stack Actual</h4>
+                        <p style="font-size:0.55em">
+                            <span class="badge cyan">Python</span>
+                            <span class="badge orange">Burp Suite</span>
+                            <span class="badge green">Nuclei</span>
+                            <span class="badge pink">Metasploit</span>
+                            <span class="badge gold">Kali Linux</span>
+                        </p>
+                    </div>
+                    <div class="info-box cyan">
+                        <h4>🔗 Conéctate</h4>
+                        <p style="font-size:0.55em">
+                            <a href="https://linkedin.com/in/diego-saavedra-developer" target="_blank">LinkedIn</a> • 
+                            <a href="https://x.com/statick_ds" target="_blank">X/Twitter</a> • 
+                            <a href="https://github.com/statick88" target="_blank">GitHub</a> • 
+                            <a href="https://scholar.google.com/citations?user=getKs_4AAAAJ" target="_blank">Google Scholar</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="doom-tip"><strong>[DOOM TIP]</strong> Los números importan. Pero importa más la consistencia que los números grandes.</div>
+                <div class="slide-footer">
+                    <span class="footer-text">Dr. Doom: Bug Bounty | FLISOL 2026 | Statick</span>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 51: RECURSOS GRATIS - KIT DE INICIO                             -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>🎁 Kit de Inicio <span style="color:var(--doom-gold)">— Todo Gratis</span></h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Todo lo que necesitan para empezar. Sin excusas.</p>
+                <div class="card-grid two" style="margin-top:0.3em">
+                    <div class="card" style="border-color:var(--green)">
+                        <h4 style="color:var(--green)">📚 Aprender (Free)</h4>
+                        <ul style="font-size:0.52em">
+                            <li><a href="https://portswigger.net/web-security" target="_blank">PortSwigger Academy</a> — 100% gratis</li>
+                            <li><a href="https://academy.hackthebox.com" target="_blank">HTB Academy</a> — créditos gratis</li>
+                            <li><a href="https://tryhackme.com" target="_blank">TryHackMe</a> — free tier</li>
+                            <li><a href="https://statick88.github.io/challenges" target="_blank">70+ Challenges</a> — mis labs</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-color:var(--cyan)">
+                        <h4 style="color:var(--cyan)">🛠️ Herramientas (Free)</h4>
+                        <ul style="font-size:0.52em">
+                            <li><a href="https://portswigger.net/burp" target="_blank">Burp Community</a> — gratis forever</li>
+                            <li><a href="https://github.com/projectdiscovery/nuclei" target="_blank">Nuclei</a> — open source</li>
+                            <li><a href="https://github.com/projectdiscovery/subfinder" target="_blank">Subfinder</a> — open source</li>
+                            <li><a href="https://github.com/ffuf/ffuf" target="_blank">ffuf</a> — fuzzer rápido</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-color:var(--orange)">
+                        <h4 style="color:var(--orange)">🎯 Practicar (Free)</h4>
+                        <ul style="font-size:0.52em">
+                            <li><a href="https://www.vulnhub.com" target="_blank">VulnHub</a> — VMs gratis</li>
+                            <li><a href="https://ctftime.org" target="_blank">CTFtime</a> — calendar CTFs</li>
+                            <li><a href="https://www.root-me.org" target="_blank">Root Me</a> — 400+ challenges</li>
+                            <li>DVWA, Juice Shop — Docker</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-color:var(--pink)">
+                        <h4 style="color:var(--pink)">💰 Empezar a Ganar</h4>
+                        <ul style="font-size:0.52em">
+                            <li><a href="https://intigriti.com" target="_blank">Intigriti</a> — Europa, claro</li>
+                            <li><a href="https://bugcrowd.com" target="_blank">Bugcrowd</a> — startups</li>
+                            <li><a href="https://hackerone.com" target="_blank">HackerOne</a> — enterprise</li>
+                            <li><a href="https://yeswehack.com" target="_blank">YesWeHack</a> — Francia</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="terminal" style="margin-top:0.3em;font-size:0.52em">
+                    <div class="line"><span class="comment"># Setup rápido en tu máquina</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command"># Instalar herramientas esenciales</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">go install -v github.com/ffuf/ffuf/v2@latest</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">pip3 install sqlmap</span></div>
+                    <div class="line"><span class="output" style="color:var(--green)">✓ Herramientas instaladas. ¡A cazar!</span></div>
+                </div>
+                <div class="doom-tip"><strong>[DOOM TIP]</strong> Todo lo que necesitas para ganar $10K+ en bounties es GRATIS. Solo necesitas tiempo y dedicación.</div>
+                <div class="slide-footer">
+                    <span class="footer-text">Dr. Doom: Bug Bounty | FLISOL 2026 | Statick</span>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 52: CURSO ABACOM - CTA                                          -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>🎓 Curso Abacom <span style="color:var(--doom-gold)">— ¡Inscríbete!</span></h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">¿Quieres más? Este curso es el paso siguiente. 10 días de hackeo intensivo.</p>
+                <div class="info-box" style="margin-top:0.3em;border:2px solid var(--doom-gold)">
+                    <h4 style="color:var(--doom-gold);font-size:0.75em;text-align:center">🔐 CURSO DE ETHICAL HACKING - ABACOM</h4>
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:0.3em;text-align:center">
+                        <div>
+                            <p style="font-size:1.3em;color:var(--cyan)">📅</p>
+                            <p style="font-size:0.55em;color:var(--text-muted);margin:0">16-27 Marzo</p>
+                            <p style="font-size:0.5em;color:var(--cyan)">Lun-Sab 19-22h</p>
+                        </div>
+                        <div>
+                            <p style="font-size:1.3em;color:var(--green)">📜</p>
+                            <p style="font-size:0.55em;color:var(--text-muted);margin:0">Certificado</p>
+                            <p style="font-size:0.5em;color:var(--green)">Min. Trabajo</p>
+                        </div>
+                        <div>
+                            <p style="font-size:1.3em;color:var(--pink)">🖥️</p>
+                            <p style="font-size:0.55em;color:var(--text-muted);margin:0">Hands-on</p>
+                            <p style="font-size:0.5em;color:var(--pink)">Core i5, 8GB</p>
+                        </div>
+                        <div>
+                            <p style="font-size:1.3em;color:var(--orange)">👨‍🏫</p>
+                            <p style="font-size:0.55em;color:var(--text-muted);margin:0">Profesor</p>
+                            <p style="font-size:0.5em;color:var(--orange)">Statick</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="savitar-alert" style="margin-top:0.3em">
+                    <h4>📱 ¿Cómo inscribirse?</h4>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:0.58em">
+                        <div>
+                            <strong>WhatsApp:</strong><br>
+                            <a href="https://wa.me/593980192790" target="_blank">+593 980192790</a><br>
+                            <span style="color:var(--text-muted)">Escribe "Curso FLISOL"</span>
+                        </div>
+                        <div>
+                            <strong>Web:</strong><br>
+                            <a href="https://statick88.github.io" target="_blank">statick88.github.io</a><br>
+                            <span style="color:var(--text-muted)">Más info ahí</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="doom-tip"><strong>[DOOM TIP]</strong> Los que terminen el curso reciben acceso gratuito a mis 70+ challenges.</div>
+                <div class="doom-consejo"><strong>[Statick]</strong> Che, en 10 días te enseño lo que a mí me tomó meses aprender solo. ¿Vale la pena? Totalmente.</div>
+                <div class="slide-footer">
+                    <span class="footer-text">Dr. Doom: Bug Bounty | FLISOL 2026 | Statick</span>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 53: RETO FINAL - QR CODE                                       -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>🎯 Reto Final <span style="color:var(--doom-gold)">— QR Challenge</span></h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">El último desafío. Escanea el QR y sigue las instrucciones. ¡Es un CTF real!</p>
+                <div style="display:flex;justify-content:center;align-items:center;gap:30px;margin-top:0.4em">
+                    <div style="text-align:center">
+                        <img src="images/qr.png" alt="QR Challenge" style="width:150px;border-radius:12px;border:3px solid var(--doom-gold)">
+                        <p style="font-size:0.65em;color:var(--doom-gold);margin-top:0.3em"><strong>ESCANEA Y DESCUBRE</strong></p>
+                        <p style="font-size:0.52em;color:var(--text-muted)">El QR contiene un mini-CTF. ¿Lo resuelves?</p>
+                    </div>
+                    <div style="max-width:350px">
+                        <div class="info-box" style="border:1px solid var(--doom-gold)">
+                            <h4 style="color:var(--doom-gold)">🏆 Instrucciones</h4>
+                            <ol style="font-size:0.58em;margin:0.3em 0;padding-left:1.2em">
+                                <li>Escanea el QR con tu celular</li>
+                                <li>Sigue las instrucciones en la página</li>
+                                <li>Encuentra la flag oculta</li>
+                                <li>Envía la flag a <strong>@flisol_loja</strong></li>
+                                <li>¡Gana el premio especial!</li>
+                            </ol>
+                        </div>
+                        <div class="info-box cyan" style="margin-top:0.2em">
+                            <h4>💡 Pista</h4>
+                            <p style="font-size:0.55em">La primera parte es fácil. La segunda requiere DevTools. La tercera requiere pensar como Doom.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="doom-tip"><strong>[DOOM TIP]</strong> Los mejores hackers siempre tienen un ojo en el teléfono. QR codes esconden secretos.</div>
+                <div class="doom-consejo"><strong>[Statick]</strong> Che, si resuelven el reto final, me mandan mensaje. El primero que lo haga gana mentoría 1-on-1 gratis.</div>
+                <div class="slide-footer">
+                    <span class="footer-text">Dr. Doom: Bug Bounty | FLISOL 2026 | Statick</span>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 54: GRACIAS                                                    -->
             <!-- ═══════════════════════════════════════════════════════════════════ -->
             <section class="thanks-slide">
                 <h1>¡Gracias, ñaños!</h1>
@@ -2254,7 +2590,7 @@
             </section>
 
             <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 49: Q&A                                                         -->
+            <!-- SLIDE 55: Q&A                                                         -->
             <!-- ═══════════════════════════════════════════════════════════════════ -->
             <section class="qa-slide">
                 <h2>¿Preguntas?</h2>
@@ -2291,6 +2627,52 @@
             controlsTutorial: false,
             transition: 'slide',
             plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealSearch]
+        });
+
+        // Timer functionality for CTF challenges
+        function startTimer(elementId, minutes) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            let totalSeconds = minutes * 60;
+            const interval = setInterval(() => {
+                const mins = Math.floor(totalSeconds / 60);
+                const secs = totalSeconds % 60;
+                element.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                
+                if (totalSeconds <= 60) {
+                    element.style.color = '#f7768e';
+                }
+                
+                if (totalSeconds <= 0) {
+                    clearInterval(interval);
+                    element.textContent = '⏰ TIEMPO';
+                    element.style.color = '#ff9e64';
+                }
+                
+                totalSeconds--;
+            }, 1000);
+        }
+
+        // Start timers when CTF slides are shown
+        Reveal.on('slidechanged', (event) => {
+            const slide = event.currentSlide;
+            const timer1 = slide.querySelector('#timer1');
+            const timer2 = slide.querySelector('#timer2');
+            const timer3 = slide.querySelector('#timer3');
+            
+            if (timer1 && !timer1.dataset.started) {
+                timer1.dataset.started = 'true';
+                startTimer('timer1', 5);
+            }
+            if (timer2 && !timer2.dataset.started) {
+                timer2.dataset.started = 'true';
+                startTimer('timer2', 8);
+            }
+            if (timer3 && !timer3.dataset.started) {
+                timer3.dataset.started = 'true';
+                startTimer('timer3', 10);
+            }
         });
     </script>
 </body>
