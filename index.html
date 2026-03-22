@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Doom: Bug Bounty | FLISOL 2026</title>
-    <meta name="description" content="El arte de conquistar sistemas — desde la perspectiva del máximo villano">
-    <meta name="author" content="Statick — Diego Medardo Saavedra García">
+    <title>Bug Bounty | FLISOL 2026</title>
+    <meta name="description" content="Introducción al Bug Bounty - Seguridad Ofensiva">
+    <meta name="author" content="Diego Medardo Saavedra García - Statick">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦹‍♂️</text></svg>">
     
@@ -61,9 +61,6 @@
         .reveal li { margin: 0.15em 0; color: var(--text-muted); line-height: 1.3; }
         .reveal li::marker { color: var(--doom-gold); }
 
-        /* Adjust reveal - no fixed banner */
-        .reveal { font-family: var(--font); font-size: 24px; }
-
         .badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.58em; font-weight: 500; margin: 2px; }
         .badge.green { background: rgba(158,206,106,0.15); color: var(--green); }
         .badge.pink { background: rgba(247,118,142,0.15); color: var(--pink); }
@@ -117,52 +114,37 @@
 <body>
     <div class="reveal">
         <div class="slides">
-            
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 1: TITLE (1 min)                                              -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+
+            <!-- SLIDE 1: TITLE -->
             <section class="title-slide">
                 <div style="display:flex;align-items:center;justify-content:center;gap:35px">
                     <div>
-                        <img src="images/dr-doom.png" alt="Dr. Doom" style="height:140px;border-radius:12px;border:2px solid rgba(255,215,0,0.3);">
+                        <img src="images/dr-doom.png" alt="Statick" style="height:140px;border-radius:12px;border:2px solid rgba(255,215,0,0.3);">
                     </div>
                     <div style="text-align:left">
-                        <h1>Dr. Doom</h1>
-                        <p class="subtitle">Bug Bounty: El Arte de la Conquista</p>
+                        <h1>Bug Bounty</h1>
+                        <p class="subtitle">El Arte de Conquistar Sistemas</p>
                         <div>
                             <span class="badge gold">FLISOL 2026</span>
                             <span class="badge">Seguridad Ofensiva</span>
                             <span class="badge pink">Hands-On</span>
                         </div>
                         <p class="author">
-                            <span class="doom-crown">👑</span>
+                            <span>👑</span>
                             Diego Medardo Saavedra García — <span style="color:var(--cyan)">Statick</span><br>
                             <span style="font-size:0.68em;color:var(--text-muted)">Prof. ESPE, UIDE, Abacom | Máster UCM</span>
                         </p>
                     </div>
                 </div>
-                <p style="font-size:0.72em;color:var(--doom-gold);font-style:italic;text-align:center;margin-top:0.3em">"Hoy les cuento cómo Doom conquista sistemas — con permiso, ñaños."</p>
-                
-
-                <!-- notes removed -->
-                    <h2>🎤 Speaker Notes - Slide 1: Título</h2>
-                    <ul>
-                        <li><strong>Tiempo:</strong> 1-2 minutos</li>
-                        <li><strong>Saludo:</strong> "¡Hola! Soy Diego, Statick. Hoy les cuento cómo conquer sistemas desde el lado del bien."</li>
-                        <li><strong>Dato personal:</strong> Menciona que eres de Loja y que FLISOL es especial para ti.</li>
-                    </ul>
-                </aside>
-
+                <p style="font-size:0.72em;color:var(--doom-gold);font-style:italic;text-align:center;margin-top:0.3em">"Hoy les cuento cómo conquisto sistemas — con permiso, ñaños."</p>
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 2: LA LEY DE DOOM (1 min)                                     -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 2: LA LEY DE ORO -->
             <section style="background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, rgba(0,0,0,0.9) 100%);">
                 <div style="border: 3px solid var(--doom-gold); border-radius: 16px; padding: 1.2em; max-width: 700px;">
-                    <h2 style="color: var(--doom-gold); font-size: 1.3em; margin-bottom: 0.2em; text-align: center;">⚖️ LA LEY DE DOOM</h2>
+                    <h2 style="color: var(--doom-gold); font-size: 1.3em; margin-bottom: 0.2em; text-align: center;">⚖️ LA LEY DE ORO</h2>
                     <p style="text-align: center; font-size: 0.68em; color: var(--text-muted); margin-bottom: 0.4em; font-style: italic;">
-                        "Oigan chévere, antes de que Doom les cuente sus secretos, esto es REGLA DE ORO, ¿sí?"
+                        "Oigan chévere, antes de que les cuente mis secretos, esto es REGLA DE ORO, ¿sí?"
                     </p>
                     <div style="border-top: 2px solid rgba(255,215,0,0.3); padding-top: 0.5em;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left;">
@@ -188,52 +170,25 @@
                         </div>
                     </div>
                 </div>
-                <!-- notes removed -->
-                    <h2>🎤 Speaker Notes - Slide 2: La Ley de Doom</h2>
-                    <ul>
-                        <li><strong>Tiempo:</strong> 1 minuto — NO escatimar aquí</li>
-                        <li><strong>Tono:</strong> SERIO. Mirar a la audiencia a los ojos.</li>
-                        <li><strong>Frase clave:</strong> "Esto es REGLA DE ORO. Si alguien sale de aquí y hace bug bounty sin permiso, no fue Doom quien los enseñó."</li>
-                        <li><strong>Énfasis:</strong> Mencionar que en Ecuador el Cibercrimen está tipificado. Pueden ir presos.</li>
-                        <li><strong>Pregunta retórica:</strong> "¿Cuántos piensan que el hacking ético es ilegal? ¿Y si les digo que es un trabajo LEGAL que paga MUY bien?"</li>
-                    </ul>
-                </aside>
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 3: QUIÉN ES DOOM / STATICK (2 min)                            -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 3: QUIÉN SOY -->
             <section>
-                <h2>¿Quién es Doom? <span style="color:var(--cyan)">— Spoiler: Es Statick</span></h2>
-                <p style="font-size:0.68em;color:var(--text-muted)">Oigan bacán, Doom es mi personaje. Yo soy Diego, profesor y hacker ético.</p>
+                <h2>¿Quién soy?</h2>
+                <p style="font-size:0.68em;color:var(--text-muted)">Oigan bacán, les cuento mi historia.</p>
                 <div class="card-grid four">
-                    <div class="card"><span class="doom-crown">👑</span><h4>Profesor</h4><p>ESPE, UIDE, Abacom</p><p style="color:var(--doom-gold);font-size:0.52em">6 universidades</p></div>
-                    <div class="card"><span class="doom-crown">⚔️</span><h4>Developer</h4><p>10+ años</p><p style="color:var(--sapphire);font-size:0.52em">FullStack</p></div>
-                    <div class="card"><span class="doom-crown">🦹‍♂️</span><h4>Hacker</h4><p>Intigriti, Bugcrowd</p><p style="color:var(--green);font-size:0.52em">Ethical only</p></div>
-                    <div class="card"><span class="doom-crown">📚</span><h4>Estudiante</h4><p>Máster UCM</p><p style="color:var(--cyan);font-size:0.52em">Ciberseguridad</p></div>
+                    <div class="card"><h4>👑 Profesor</h4><p>ESPE, UIDE, Abacom</p><p style="color:var(--doom-gold);font-size:0.52em">6 universidades</p></div>
+                    <div class="card"><h4>⚔️ Developer</h4><p>10+ años</p><p style="color:var(--sapphire);font-size:0.52em">FullStack</p></div>
+                    <div class="card"><h4>🦹‍♂️ Hacker</h4><p>Intigriti, Bugcrowd</p><p style="color:var(--green);font-size:0.52em">Ethical only</p></div>
+                    <div class="card"><h4>📚 Estudiante</h4><p>Máster UCM</p><p style="color:var(--cyan);font-size:0.52em">Ciberseguridad</p></div>
                 </div>
                 <div class="info-box" style="margin-top:0.4em">
-                    <h4>🏆 Logros Recientes</h4>
-                    <p style="font-size:0.62em"><strong>RootedCON 2026:</strong> 15/15 challenges resueltos | <strong>70+ challenges</strong> publicados | <a href="https://github.com/statick88/challenges/tree/main/ctf/rootedcon2026" target="_blank">Ver soluciones</a></p>
+                    <h4>🏆 Logros</h4>
+                    <p style="font-size:0.62em"><strong>RootedCON 2026:</strong> 15/15 challenges | <strong>70+ challenges</strong> | <a href="https://github.com/statick88/challenges" target="_blank">GitHub</a></p>
                 </div>
-                
-                <!-- notes removed -->
-                    <h2>🎤 Speaker Notes - Slide 3: ¿Quién es Doom?</h2>
-                    <ul>
-                        <li><strong>Tiempo:</strong> 2 minutos</li>
-                        <li><strong>Frase clave:</strong> "Doom es mi personaje. Pero yo soy Diego, de Loja, profesor en 6 universidades, y sí, hago bug bounty en platforms como Intigriti y Bugcrowd."</li>
-                        <li><strong>Highlight:</strong> Menciona el RootedCON 2026 — "15/15 challenges. Esto demuestra que se puede lograr con práctica."</li>
-                        <li><strong>Conexión con audiencia:</strong> "Yo también fui estudiante. Empecé en un IST. Lo que ustedes pueden lograr, yo también lo logré."</li>
-                        <li><strong>Dato curioso:</strong> "322 repos en GitHub. Todo open source. Hackers éticos comparten, no esconden."</li>
-                    </ul>
-                </aside>
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 4: ¿QUÉ ES BUG BOUNTY? (2 min)                                -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 4: ¿QUÉ ES BUG BOUNTY? -->
             <section>
                 <h2>¿Qué es Bug Bounty?</h2>
                 <p style="font-size:0.68em;color:var(--text-muted)">Las empresas pagan por encontrar vulnerabilidades ANTES que los malos.</p>
@@ -241,13 +196,9 @@
                     <div class="info-box"><h4>🏰 Para Empresas</h4><ul><li>Descubre vulns antes que hackers maliciosos</li><li>Más barato que contratar equipo completo</li><li>Miles de hunters como centinelas</li></ul></div>
                     <div class="info-box cyan"><h4>⚔️ Para Hackers</h4><ul><li>Gana dinero: $100 - $50K+ por bug</li><li>Aprende hacking real y legal</li><li>Construye reputación y carrera</li></ul></div>
                 </div>
-
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 5: PLATAFORMAS + COMPARATIVA (2 min)                          -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 5: PLATAFORMAS -->
             <section>
                 <h2>Los Reinos del Bug Bounty</h2>
                 <p style="font-size:0.65em;color:var(--text-muted)">Cada plataforma tiene sus reglas. Conócelas antes de entrar.</p>
@@ -258,16 +209,12 @@
                     <div class="card" style="border-color:var(--cyan)"><h4 style="color:var(--cyan)">🔵 YesWeHack</h4><p>Francia</p><p style="color:var(--cyan);font-size:0.5em">$500-$5K</p></div>
                 </div>
                 <div class="info-box" style="margin-top:0.4em">
-                    <h4>🎯 Mi Recomendación para Empezar</h4>
-                    <p style="font-size:0.62em"><strong style="color:var(--green)">1. Intigriti</strong> (claro en bounties, comunicación directa) → <strong style="color:var(--orange)">2. Bugcrowd VDP</strong> (sin bounty pero buen training) → <strong style="color:var(--pink)">3. HackerOne</strong> (enterprise, más competitivo)</p>
+                    <h4>🎯 Mi Recomendación</h4>
+                    <p style="font-size:0.62em"><strong style="color:var(--green)">1. Intigriti</strong> → <strong style="color:var(--orange)">2. Bugcrowd VDP</strong> → <strong style="color:var(--pink)">3. HackerOne</strong></p>
                 </div>
-                
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 6: LABS PARA PRACTICAR (2 min)                                -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 6: LABS -->
             <section>
                 <h2>Campos de Entrenamiento</h2>
                 <p style="font-size:0.65em;color:var(--text-muted)">No hacks en producción. Practica primero en labs seguros.</p>
@@ -283,15 +230,11 @@
                     <div class="line"><span class="prompt">$</span> <span class="command">docker run -d -p 3000:3000 bkimminich/juice-shop</span></div>
                     <div class="line"><span class="output">→ http://localhost:3000</span></div>
                 </div>
-                <div class="doom-tip" style="display:none"><strong>[DOOM TIP]</strong> <a href="https://statick88.github.io/challenges" target="_blank">70+ challenges</a> en mi sitio — todos gratis.</div>
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 7: METODOLOGÍA (2 min)                                        -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 7: METODOLOGÍA -->
             <section>
-                <h2>La Doctrina de Doom</h2>
+                <h2>La Doctrina</h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">4 fases. Sin atajos. Cada una tiene su propósito.</p>
                 <div class="card-grid four">
                     <div class="card" style="border-color:var(--cyan)">
@@ -315,13 +258,9 @@
                         <p style="color:var(--orange);font-size:0.48em">Cobrar</p>
                     </div>
                 </div>
-
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 8: LIVE DEMO - SQLi (3 min)                                   -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 8: LIVE DEMO SQLi -->
             <section>
                 <h2>Live Demo <span style="color:var(--pink)">— SQL Injection</span></h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">Mismo lab que en RootedCON. DVWA en Docker, security: low.</p>
@@ -335,20 +274,15 @@
                     <div class="line"><span class="comment"># 2. Extraer datos (SOLO LAB LOCAL)</span></div>
                     <div class="line"><span class="prompt">$</span> <span class="command">curl "http://localhost/vulnerabilities/sqli/?id=1' UNION SELECT user,password FROM users--"</span></div>
                     <div class="line"><span class="output">admin | 5f4dcc3b5aa765d61d8327deb882cf99</span></div>
-                    <div class="line"><span class="output">gordonb | e99a18c428cb38d5f260853678922e03</span></div>
                 </div>
                 <div class="info-box orange" style="margin-top:0.3em">
                     <h4>🎯 Impacto en Bug Bounty</h4>
                     <p style="font-size:0.6em"><strong>Severity:</strong> <span style="color:var(--pink)">9.8 CRITICAL</span> | <strong>CVSS:</strong> AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N</p>
                     <p style="font-size:0.55em"><strong>Bounty estimado:</strong> $2,000 - $10,000</p>
                 </div>
-                <div class="doom-tip" style="display:none"><strong>[DOOM TIP]</strong> SQLi es el bug #1 en OWASP. Si aprendes uno que sea este.</div>
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 9: ROADMAP PRIMER BOUNTY (2 min)                             -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 9: ROADMAP -->
             <section>
                 <h2>Tu Primer Bounty <span style="color:var(--doom-gold)">— Roadmap</span></h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">Esto es exactamente lo que yo hice. Step by step, bacán.</p>
@@ -378,13 +312,9 @@
                     <h4>💰 Bounties Promedio</h4>
                     <p style="font-size:0.62em"><strong style="color:var(--green)">Low:</strong> $100-500 | <strong style="color:var(--orange)">Medium:</strong> $500-2,000 | <strong style="color:var(--pink)">High:</strong> $2,000-10,000 | <strong style="color:var(--doom-gold)">Critical:</strong> $10,000+</p>
                 </div>
-                <div class="doom-tip" style="display:none"><strong>[DOOM TIP]</strong> Mi primer bounty fue $250 por un XSS. Pequeño pero el primero. Después viene la cascada.</div>
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 15: RECURSOS GRATIS (1 min)                                   -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 10: RECURSOS -->
             <section>
                 <h2>🎁 Kit de Inicio <span style="color:var(--doom-gold)">— Todo Gratis</span></h2>
                 <div class="card-grid two" style="margin-top:0.3em">
@@ -392,7 +322,7 @@
                         <h4 style="color:var(--green)">📚 Aprender</h4>
                         <ul style="font-size:0.58em">
                             <li><a href="https://portswigger.net/web-security" target="_blank">PortSwigger Academy</a></li>
-                            <li><a href="https://statick88.github.io/challenges" target="_blank">70+ Challenges Statick</a></li>
+                            <li><a href="https://statick88.github.io/challenges" target="_blank">70+ Challenges</a></li>
                             <li><a href="https://tryhackme.com" target="_blank">TryHackMe</a></li>
                         </ul>
                     </div>
@@ -411,12 +341,9 @@
                     <div class="line"><span class="prompt">$</span> <span class="command">go install -v github.com/ffuf/ffuf/v2@latest</span></div>
                     <div class="line"><span class="prompt">$</span> <span class="command">pip3 install sqlmap</span></div>
                 </div>
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 16: RESPONSIBLE DISCLOSURE (1 min)                            -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 11: RESPONSIBLE DISCLOSURE -->
             <section>
                 <h2>⚖️ Responsible Disclosure</h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">El camino correcto. Sin esto, todo lo demás es irrelevante.</p>
@@ -427,13 +354,9 @@
                     <div class="card" style="border-color:var(--orange)"><h4 style="color:var(--orange)">Día 30</h4><p style="font-size:0.55em">Status update</p></div>
                     <div class="card" style="border-color:var(--pink)"><h4 style="color:var(--pink)">Día 90</h4><p style="font-size:0.55em">Fix deadline</p></div>
                 </div>
-                <div class="doom-tip" style="display:none"><strong>[DOOM TIP]</strong> 90 días es el estándar de Google, Microsoft. Si no arreglan, puedes hacer disclosure público.</div>
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 17: CURSO ABACOM (1 min)                                      -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 12: CURSO ABACOM -->
             <section>
                 <h2>🎓 ¿Siguiente Paso? <span style="color:var(--doom-gold)">— Curso Abacom</span></h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">¿Quieres más? Te enseño en 10 días lo que a mí me tomó meses.</p>
@@ -445,13 +368,9 @@
                         <div><p style="font-size:1.3em;color:var(--orange)">👨‍🏫</p><p style="font-size:0.55em;color:var(--text-muted);margin:0">Profesor</p><p style="font-size:0.5em;color:var(--orange)">Statick</p></div>
                     </div>
                 </div>
-
-
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 18: GRACIAS (1 min)                                           -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 13: GRACIAS -->
             <section class="thanks-slide">
                 <h1>¡Gracias, ñaños!</h1>
                 <p class="name">Diego Medardo Saavedra García — Statick</p>
@@ -460,9 +379,7 @@
                 <p style="font-size:0.65em;color:var(--text-muted);margin-top:0.3em">Hack the planet — pero siempre con permiso, bacán.</p>
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 19: Q&A                                                      -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- SLIDE 14: Q&A -->
             <section class="qa-slide">
                 <h2>¿Preguntas?</h2>
                 <p style="color:var(--text-muted);font-size:0.75em;margin-top:0.25em">Statick responde, ¿sí?</p>
